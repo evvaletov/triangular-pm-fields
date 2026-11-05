@@ -1,0 +1,13 @@
+{
+  "cases_sha256": "d85b9c0af019774b88aad032a8819bc8a1e7aa2cb2997a9bd675a0a2cb55e9fd",
+  "source_commit": "8a06fa62af1cce2f3309052d14bb4b0cc3f8e269",
+  "source_path": "papers/triangular_pm_20261027/triangle.py",
+  "source_sha256": "a0d9e6bac7ea75cf4c5ab4d0d22b868cb5078a6a8602e131a95542622f62ab64",
+  "counts": {
+    "taylor": 48,
+    "scalar": 32,
+    "boundary": 7,
+    "invalid": 18
+  },
+  "refinement_plan": "Taylor tensor Gauss-Legendre n=32,48,64; scalar shared closed form at 100/140 decimal digits; regular scalars independently integrated n=32/64; demanding unit-right-triangle scalar controls reduced 1D Green integration at 50/70 decimal digits; exact face average checked via symmetric h=1e-14/1e-18 traces. All arrays retained, failures reported; no selective omissions."
+}

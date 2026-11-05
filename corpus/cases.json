@@ -1,0 +1,3268 @@
+{
+  "schema_version": 1,
+  "freeze_note": "Definitions and reference methods frozen before viewing any candidate port output. No candidate implementation was read to define these cases.",
+  "coefficient_convention": "mu0 H(p+radius*u); sigma/(4*pi); component-major (3,nmono); alpha! normalized; graded degree, x ascending, y ascending, z=degree-x-y",
+  "acceptance": {
+    "coefficients_scaled_max": 1e-10,
+    "independent_refinement_scaled_max": 1e-11,
+    "scalar_absolute_T": 1e-12,
+    "scalar_relative_L2": 1e-10
+  },
+  "cases": [
+    {
+      "id": "regular_above_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_above_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_above_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_above_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_below_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        -0.75
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_below_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        -0.75
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_below_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        -0.75
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "regular_below_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        -0.75
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_plane_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_plane_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_plane_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_plane_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_edge_line_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_edge_line_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_edge_line_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "exterior_edge_line_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_q1",
+      "vertices": [
+        [
+          8.0,
+          -4.0,
+          2.0
+        ],
+        [
+          9.0,
+          -4.0,
+          2.0
+        ],
+        [
+          8.0,
+          -3.0,
+          2.0
+        ]
+      ],
+      "point": [
+        8.25,
+        -3.75,
+        2.75
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_q2",
+      "vertices": [
+        [
+          8.0,
+          -4.0,
+          2.0
+        ],
+        [
+          9.0,
+          -4.0,
+          2.0
+        ],
+        [
+          8.0,
+          -3.0,
+          2.0
+        ]
+      ],
+      "point": [
+        8.25,
+        -3.75,
+        2.75
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_q4",
+      "vertices": [
+        [
+          8.0,
+          -4.0,
+          2.0
+        ],
+        [
+          9.0,
+          -4.0,
+          2.0
+        ],
+        [
+          8.0,
+          -3.0,
+          2.0
+        ]
+      ],
+      "point": [
+        8.25,
+        -3.75,
+        2.75
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_q6",
+      "vertices": [
+        [
+          8.0,
+          -4.0,
+          2.0
+        ],
+        [
+          9.0,
+          -4.0,
+          2.0
+        ],
+        [
+          8.0,
+          -3.0,
+          2.0
+        ]
+      ],
+      "point": [
+        8.25,
+        -3.75,
+        2.75
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_exterior_q1",
+      "vertices": [
+        [
+          -8.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -7.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -8.0,
+          5.0,
+          -2.0
+        ]
+      ],
+      "point": [
+        -6.5,
+        4.25,
+        -2.0
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_exterior_q2",
+      "vertices": [
+        [
+          -8.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -7.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -8.0,
+          5.0,
+          -2.0
+        ]
+      ],
+      "point": [
+        -6.5,
+        4.25,
+        -2.0
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_exterior_q4",
+      "vertices": [
+        [
+          -8.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -7.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -8.0,
+          5.0,
+          -2.0
+        ]
+      ],
+      "point": [
+        -6.5,
+        4.25,
+        -2.0
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "translated_exterior_q6",
+      "vertices": [
+        [
+          -8.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -7.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -8.0,
+          5.0,
+          -2.0
+        ]
+      ],
+      "point": [
+        -6.5,
+        4.25,
+        -2.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_small_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0009765625,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009765625,
+          0.0
+        ]
+      ],
+      "point": [
+        0.000244140625,
+        0.000244140625,
+        0.000732421875
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.0001220703125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_small_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0009765625,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009765625,
+          0.0
+        ]
+      ],
+      "point": [
+        0.000244140625,
+        0.000244140625,
+        0.000732421875
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.0001220703125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_small_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0009765625,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009765625,
+          0.0
+        ]
+      ],
+      "point": [
+        0.000244140625,
+        0.000244140625,
+        0.000732421875
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.0001220703125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_small_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0009765625,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009765625,
+          0.0
+        ]
+      ],
+      "point": [
+        0.000244140625,
+        0.000244140625,
+        0.000732421875
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.0001220703125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_large_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0
+        ]
+      ],
+      "point": [
+        256.0,
+        256.0,
+        768.0
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 128.0,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_large_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0
+        ]
+      ],
+      "point": [
+        256.0,
+        256.0,
+        768.0
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 128.0,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_large_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0
+        ]
+      ],
+      "point": [
+        256.0,
+        256.0,
+        768.0
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 128.0,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scaled_large_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0
+        ]
+      ],
+      "point": [
+        256.0,
+        256.0,
+        768.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 128.0,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1.5
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1.5
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1.5
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1.5
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_exterior_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        1.75
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_exterior_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        1.75
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_exterior_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        1.75
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "oblique_exterior_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        1.75
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "reversed_q1",
+      "vertices": [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "reversed_q2",
+      "vertices": [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "reversed_q4",
+      "vertices": [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "reversed_q6",
+      "vertices": [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "negative_charge_q1",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "sigma": -0.75,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "negative_charge_q2",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "sigma": -0.75,
+      "order": 2,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "negative_charge_q4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "sigma": -0.75,
+      "order": 4,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "negative_charge_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "sigma": -0.75,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "taylor",
+      "reference_method": "green_kernel_gauss_32_48_64"
+    },
+    {
+      "id": "scalar_regular_above",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_regular_below",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        -0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_exterior_plane",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_exterior_edge_line",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.25,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_translated",
+      "vertices": [
+        [
+          8.0,
+          -4.0,
+          2.0
+        ],
+        [
+          9.0,
+          -4.0,
+          2.0
+        ],
+        [
+          8.0,
+          -3.0,
+          2.0
+        ]
+      ],
+      "point": [
+        8.25,
+        -3.75,
+        2.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_translated_exterior",
+      "vertices": [
+        [
+          -8.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -7.0,
+          4.0,
+          -2.0
+        ],
+        [
+          -8.0,
+          5.0,
+          -2.0
+        ]
+      ],
+      "point": [
+        -6.5,
+        4.25,
+        -2.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_scaled_small",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0009765625,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0009765625,
+          0.0
+        ]
+      ],
+      "point": [
+        0.000244140625,
+        0.000244140625,
+        0.000732421875
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.0001220703125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_scaled_large",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1024.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1024.0,
+          0.0
+        ]
+      ],
+      "point": [
+        256.0,
+        256.0,
+        768.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 128.0,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_oblique",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1.5
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_oblique_exterior",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "point": [
+        1.5,
+        0.25,
+        1.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_reversed",
+      "vertices": [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "scalar_negative_charge",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -0.5,
+        0.5
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "far_100",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        100.0,
+        -75.0,
+        50.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "far_1e6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1000000.0,
+        -2000000.0,
+        3000000.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_gauss"
+    },
+    {
+      "id": "near_plane_1e4",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.0001
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_plane_1e8",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_plane_1e12",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        1e-12
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_plane_minus",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        -1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_edge_in",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        1e-08,
+        1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_edge_out",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -1e-08,
+        1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_edge_plane",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        -1e-08,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "near_vertex",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        1e-08,
+        -1e-08,
+        1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "above_vertex",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.0,
+        0.0,
+        1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "above_edge",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        0.0,
+        1e-08
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_reduced_integral"
+    },
+    {
+      "id": "average_trace",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_symmetric_trace"
+    },
+    {
+      "id": "average_trace_reversed",
+      "vertices": [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "closed_form_mp_and_symmetric_trace"
+    },
+    {
+      "id": "zero_regular",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 0,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "exact_zero"
+    },
+    {
+      "id": "zero_edge",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 0,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "exact_zero"
+    },
+    {
+      "id": "zero_vertex",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sigma": 0,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "exact_zero"
+    },
+    {
+      "id": "zero_sheet_da",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.0
+      ],
+      "sigma": 0,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "exact_zero"
+    },
+    {
+      "id": "zero_edge_da",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 0,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "exact_zero"
+    },
+    {
+      "id": "zero_vertex_da",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sigma": 0,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 0,
+      "suite": "scalar",
+      "reference_method": "exact_zero"
+    },
+    {
+      "id": "edge",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 8,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "vertex",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 8,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "hypotenuse",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        0.5,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 8,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "sheet_da",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 1,
+      "radius": 0.125,
+      "expected_status": 9,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "sheet_da_q6",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 9,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "edge_da",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.5,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 8,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "vertex_da",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sigma": 1.25,
+      "order": 6,
+      "radius": 0.125,
+      "expected_status": 8,
+      "suite": "boundary",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "negative_order",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": -1,
+      "radius": 0.125,
+      "expected_status": 5,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "excess_order",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 7,
+      "radius": 0.125,
+      "expected_status": 5,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "zero_radius",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0,
+      "expected_status": 7,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "negative_radius",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": -1,
+      "expected_status": 7,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "nan_radius",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": "nan",
+      "expected_status": 7,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "inf_radius",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": "inf",
+      "expected_status": 7,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "nan_observer",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        "nan",
+        0,
+        1
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 6,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "inf_observer",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0,
+        "inf",
+        1
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 6,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "nan_sigma",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": "nan",
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "inf_sigma",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": "inf",
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "nan_vertex",
+      "vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          "nan",
+          0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "inf_vertex",
+      "vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          "inf",
+          0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "collinear",
+      "vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "duplicate_vertex",
+      "vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 1.25,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "zero_charge_bad_geometry",
+      "vertices": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 0,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 11,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "zero_charge_bad_order",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 0,
+      "order": 7,
+      "radius": 0.125,
+      "expected_status": 5,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "zero_charge_bad_radius",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        0.25,
+        0.25,
+        0.75
+      ],
+      "sigma": 0,
+      "order": 0,
+      "radius": 0,
+      "expected_status": 7,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    },
+    {
+      "id": "zero_charge_bad_observer",
+      "vertices": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "point": [
+        "nan",
+        0,
+        1
+      ],
+      "sigma": 0,
+      "order": 0,
+      "radius": 0.125,
+      "expected_status": 6,
+      "suite": "invalid",
+      "reference_method": "exact_contract"
+    }
+  ]
+}

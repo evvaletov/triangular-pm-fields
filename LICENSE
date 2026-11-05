@@ -1,0 +1,9 @@
+Source release — no public license grant
+
+Copyright and other rights remain with their respective holders. No public
+license or permission to redistribute this source package is granted by this
+file.
+
+Third-party compilers, libraries, and the separately supplied COSY INFINITY
+runtime and macro library retain their own terms. They are not included here.
+See THIRD_PARTY.md for the dependency list and distribution boundaries.

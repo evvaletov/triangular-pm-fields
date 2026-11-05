@@ -1,0 +1,168 @@
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Configuring done (0.8s)
+-- Generating done (0.1s)
+-- Build files have been written to: <checkout>/build
+[ 17%] Built target tan
+[ 30%] Building CXX object cpp/CMakeFiles/triangle_pm.dir/src/triangle.cpp.o
+[ 30%] Built target tan_cli
+[ 39%] Built target example_fortran
+[ 47%] Built target test_tan
+[ 56%] Built target test_tan_c
+[ 60%] Linking CXX static library libtriangle_pm.a
+[ 65%] Built target triangle_pm
+[ 69%] Linking CXX executable triangle_cli
+[ 73%] Linking CXX executable native_cli
+[ 78%] Built target triangle_cli
+[ 82%] Built target native_cli
+[ 86%] Linking CXX executable triangle_example
+[ 91%] Building CXX object cpp/CMakeFiles/test_triangle.dir/tests/test_triangle.cpp.o
+[ 95%] Built target triangle_example
+[100%] Linking CXX executable test_triangle
+[100%] Built target test_triangle
+Test project <checkout>/build
+    Start 1: test_tan
+1/4 Test #1: test_tan .........................   Passed    0.10 sec
+    Start 2: test_tan_c
+2/4 Test #2: test_tan_c .......................   Passed    0.00 sec
+    Start 3: python_tests
+3/4 Test #3: python_tests .....................   Passed   17.60 sec
+    Start 4: test_triangle
+4/4 Test #4: test_triangle ....................   Passed    0.25 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =  17.95 sec
+Test Summary:      | Pass  Total   Time
+TriangularPMFields |  206    206  45.7s
+Test Summary:                        | Pass  Total  Time
+native input range and failed reload |    6      6  0.2s
+Test Summary:                                 | Pass  Total  Time
+standalone malformed input and map dimensions |    6      6  7.6s
+regular_above_q1 PASS
+regular_above_q2 PASS
+regular_above_q4 PASS
+regular_above_q6 PASS
+regular_below_q1 PASS
+regular_below_q2 PASS
+regular_below_q4 PASS
+regular_below_q6 PASS
+exterior_plane_q1 PASS
+exterior_plane_q2 PASS
+exterior_plane_q4 PASS
+exterior_plane_q6 PASS
+exterior_edge_line_q1 PASS
+exterior_edge_line_q2 PASS
+exterior_edge_line_q4 PASS
+exterior_edge_line_q6 PASS
+translated_q1 PASS
+translated_q2 PASS
+translated_q4 PASS
+translated_q6 PASS
+translated_exterior_q1 PASS
+translated_exterior_q2 PASS
+translated_exterior_q4 PASS
+translated_exterior_q6 PASS
+scaled_small_q1 PASS
+scaled_small_q2 PASS
+scaled_small_q4 PASS
+scaled_small_q6 PASS
+scaled_large_q1 PASS
+scaled_large_q2 PASS
+scaled_large_q4 PASS
+scaled_large_q6 PASS
+oblique_q1 PASS
+oblique_q2 PASS
+oblique_q4 PASS
+oblique_q6 PASS
+oblique_exterior_q1 PASS
+oblique_exterior_q2 PASS
+oblique_exterior_q4 PASS
+oblique_exterior_q6 PASS
+reversed_q1 PASS
+reversed_q2 PASS
+reversed_q4 PASS
+reversed_q6 PASS
+negative_charge_q1 PASS
+negative_charge_q2 PASS
+negative_charge_q4 PASS
+negative_charge_q6 PASS
+scalar_regular_above PASS
+scalar_regular_below PASS
+scalar_exterior_plane PASS
+scalar_exterior_edge_line PASS
+scalar_translated PASS
+scalar_translated_exterior PASS
+scalar_scaled_small PASS
+scalar_scaled_large PASS
+scalar_oblique PASS
+scalar_oblique_exterior PASS
+scalar_reversed PASS
+scalar_negative_charge PASS
+far_100 PASS
+far_1e6 PASS
+near_plane_1e4 PASS
+near_plane_1e8 PASS
+near_plane_1e12 PASS
+near_plane_minus PASS
+near_edge_in PASS
+near_edge_out PASS
+near_edge_plane PASS
+near_vertex PASS
+above_vertex PASS
+above_edge PASS
+average_trace PASS
+average_trace_reversed PASS
+zero_regular PASS
+zero_edge PASS
+zero_vertex PASS
+zero_sheet_da PASS
+zero_edge_da PASS
+zero_vertex_da PASS
+edge PASS
+vertex PASS
+hypotenuse PASS
+sheet_da PASS
+sheet_da_q6 PASS
+edge_da PASS
+vertex_da PASS
+negative_order PASS
+excess_order PASS
+zero_radius PASS
+negative_radius PASS
+nan_radius PASS
+inf_radius PASS
+nan_observer PASS
+inf_observer PASS
+nan_sigma PASS
+inf_sigma PASS
+nan_vertex PASS
+inf_vertex PASS
+collinear PASS
+duplicate_vertex PASS
+zero_charge_bad_geometry PASS
+zero_charge_bad_order PASS
+zero_charge_bad_radius PASS
+zero_charge_bad_observer PASS
+{
+  "schema_version": 1,
+  "cases_sha256": "d85b9c0af019774b88aad032a8819bc8a1e7aa2cb2997a9bd675a0a2cb55e9fd",
+  "reference_sha256": "60869f3ccf5fc286224ac34c2187435cf659d9bb5e24fea2fe0be4d798d55f55",
+  "native_only": false,
+  "all_passed": true,
+  "executed_by_provider": {
+    "python_analytic": 48,
+    "cpp_standalone": 105,
+    "julia_standalone": 105,
+    "fortran_native": 98,
+    "python_native": 87,
+    "cpp_native": 98,
+    "julia_native": 98
+  }
+}
+mu0 H [T]: [-0.00617585 -0.00617585  0.06843504]
+Taylor array shape: (1, 3, 84)
+Cache: triangle.tan
+ mu0 H [T]:  -6.1758547247332037E-003  -6.1758547247332037E-003   6.8435039936663541E-002
+standalone status 0 Bx By Bz -0.00527897 -0.000806526 0.0868078

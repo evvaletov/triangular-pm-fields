@@ -1,0 +1,15 @@
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile.cmake
+*.o
+*.mod
+*.so
+triangle_cli
+native_cli
+test_triangle
+example
+/triangle_example
+compile_commands.json
+.cache/

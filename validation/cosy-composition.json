@@ -1,0 +1,53 @@
+{
+  "identity": {
+    "coefficients_checked": 630,
+    "max_scaled_error": 0.0
+  },
+  "nonlinear": {
+    "coefficients_checked": 630,
+    "max_scaled_error": 0.0
+  },
+  "mixed": {
+    "coefficients_checked": 630,
+    "max_scaled_error": 0.0
+  },
+  "alias": {
+    "coefficients_checked": 630,
+    "max_scaled_error": 0.0
+  },
+  "invalid": {
+    "statuses": [
+      0,
+      1002,
+      1002,
+      1003
+    ],
+    "outputs_preserved": true
+  },
+  "scalar": {
+    "status": 0
+  },
+  "automatic": {
+    "statuses": [
+      1002,
+      0
+    ],
+    "native_mode2_tested": true
+  },
+  "capacity_alias": {
+    "statuses": [
+      1006,
+      1004
+    ],
+    "outputs_preserved": true
+  },
+  "reload": {
+    "statuses": [
+      0,
+      0,
+      0
+    ],
+    "factor2_value": -0.05036048112258959
+  },
+  "stub_only": false
+}

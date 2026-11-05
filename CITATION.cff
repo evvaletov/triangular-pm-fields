@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite this software using the metadata in this file."
+title: "Triangular permanent-magnet fields"
+type: software
+version: 0.1.0
+date-released: 2026-11-04
+authors:
+  - family-names: Valetov
+    given-names: Eremey
+repository-code: "https://github.com/evvaletov/triangular-pm-fields"

@@ -1,0 +1,164 @@
+   PROCEDURE SI_VFIELD_TRI_EDGE_NEAR RAX RAY RAZ RBX RBY RBZ RA RB RC EX EY EZ EL FNX FNY FNZ TC LL DEDGE ;
+      {Refined log integral and solid-angle denominator near an edge.
+       E is its raw chord B-A, EL its length, and FN is the unnormalized face
+       normal. RC is the distance to the opposite vertex and TC its projection
+       onto the unit tangent E/EL, measured from P. LL and DEDGE are outputs.
+       RA/RB are distances from P to its endpoints; the vectors point from P
+       to those endpoints. U and W project P-A and B-P onto E/EL, so U+W=EL.
+       Rationalize RA+RB-EL using RA-U and RB-W. Constant-part sign choices
+       select analytic DA charts; ABS on a DA value would destroy this map.
+       No distance floor is applied: a point on the charged segment remains
+       singular, while a collinear point beyond either endpoint is regular.}
+      VARIABLE U NM1+1 ; VARIABLE W NM1+1 ; VARIABLE SU 1 ; VARIABLE SW 1 ;
+      VARIABLE CX NM1+1 ; VARIABLE CY NM1+1 ; VARIABLE CZ NM1+1 ;
+      VARIABLE RHO2 NM1+1 ; VARIABLE GAP NM1+1 ;
+      VARIABLE GA NM1+1 ; VARIABLE GB NM1+1 ; VARIABLE VB NM1+1 ;
+      DEF ;
+      U := -(RAX*EX + RAY*EY + RAZ*EZ)/EL ;
+      W := (RBX*EX + RBY*EY + RBZ*EZ)/EL ;
+      SU := 1 ; IF CONS(U)<0 ; SU := -1 ; ENDIF ;
+      SW := 1 ; IF CONS(W)<0 ; SW := -1 ; ENDIF ;
+      {Use the closer endpoint to reduce cancellation in the perpendicular
+       displacement. Take its cross product with the RAW chord before dividing
+       by EL: normalizing the chord first can create a false transverse offset
+       even at an exact midpoint. The endpoint choice preserves the DA map.}
+      IF CONS(RA)<CONS(RB) ;
+         CX := (RAY*EZ - RAZ*EY)/EL ;
+         CY := (RAZ*EX - RAX*EZ)/EL ;
+         CZ := (RAX*EY - RAY*EX)/EL ;
+      ELSEIF LO(1) ;
+         CX := (RBY*EZ - RBZ*EY)/EL ;
+         CY := (RBZ*EX - RBX*EZ)/EL ;
+         CZ := (RBX*EY - RBY*EX)/EL ;
+      ENDIF ;
+      RHO2 := CX*CX + CY*CY + CZ*CZ ;
+      GA := (SU-1)*U + RHO2/(RA+SU*U) ;
+      GB := (SW-1)*W + RHO2/(RB+SW*W) ;
+      GAP := GA+GB ;
+      LL := LOG(1+2*EL/GAP) ;
+      {Exact local rearrangement of the van Oosterom-Strackee denominator:
+       RA*RB+rA.rB=GAP*(RA+RB+EL)/2;
+       q.s=RHO2-(rA cross (E/EL)).FN/EL, with q,s perpendicular to E.
+       All terms are small near the edge, without an O(1) cancellation.}
+      VB := (CX*FNX + CY*FNY + CZ*FNZ)/EL ;
+      DEDGE := RC*GAP*(RA+RB+EL)/2 + (RHO2-VB)*(RA+RB)
+             + TC*(W*GA-U*GB) ;
+   ENDPROCEDURE ;
+
+   PROCEDURE SI_VFIELD_TRI_CHARGE AX AY AZ BXV BYV BZV CXV CYV CZV SIGMA PX PY PZ ;
+      {ACCUMULATE field at (PX,PY,PZ) from uniformly charged triangle (A,B,C).
+       Vertices ordered so (B-A)×(C-A) = outward normal. σ/(4π) convention.
+       Result ADDED to SI_VFR_BX/BY/BZ globals.}
+      VARIABLE E1X 1 ; VARIABLE E1Y 1 ; VARIABLE E1Z 1 ;
+      VARIABLE E2X 1 ; VARIABLE E2Y 1 ; VARIABLE E2Z 1 ;
+      VARIABLE NX 1 ; VARIABLE NY 1 ; VARIABLE NZ 1 ; VARIABLE NMAG 1 ;
+      VARIABLE FNX 1 ; VARIABLE FNY 1 ; VARIABLE FNZ 1 ;
+      VARIABLE R0X NM1+1 ; VARIABLE R0Y NM1+1 ; VARIABLE R0Z NM1+1 ; VARIABLE R0 NM1+1 ;
+      VARIABLE R1X NM1+1 ; VARIABLE R1Y NM1+1 ; VARIABLE R1Z NM1+1 ; VARIABLE R1 NM1+1 ;
+      VARIABLE R2X NM1+1 ; VARIABLE R2Y NM1+1 ; VARIABLE R2Z NM1+1 ; VARIABLE R2 NM1+1 ;
+      VARIABLE NUM NM1+1 ; VARIABLE DENV NM1+1 ; VARIABLE OMEGA NM1+1 ;
+      VARIABLE EX 1 ; VARIABLE EY 1 ; VARIABLE EZ 1 ; VARIABLE EL 1 ;
+      VARIABLE CRVX 1 ; VARIABLE CRVY 1 ; VARIABLE CRVZ 1 ;
+      VARIABLE LL NM1+1 ;
+      VARIABLE GAP NM1+1 ; VARIABLE SUMP NM1+1 ; VARIABLE TC NM1+1 ; VARIABLE DEDGE NM1+1 ;
+      VARIABLE COND 1 ; VARIABLE DENCOND 1 ;
+      VARIABLE FAC 1 ;
+      DEF ;
+      FAC := SIGMA / (4*PI) ;
+      IF NOT(ABS(FAC)<1E-30) ;
+      {Face normal from vertex ordering}
+      E1X := BXV-AX ; E1Y := BYV-AY ; E1Z := BZV-AZ ;
+      E2X := CXV-AX ; E2Y := CYV-AY ; E2Z := CZV-AZ ;
+      NX := E1Y*E2Z - E1Z*E2Y ;
+      NY := E1Z*E2X - E1X*E2Z ;
+      NZ := E1X*E2Y - E1Y*E2X ;
+      NMAG := SQRT(NX*NX + NY*NY + NZ*NZ) ;
+      IF NOT(NMAG<1E-30) ;
+      {Vectors from P to vertices}
+      R0X := AX-PX ; R0Y := AY-PY ; R0Z := AZ-PZ ;
+      R1X := BXV-PX ; R1Y := BYV-PY ; R1Z := BZV-PZ ;
+      R2X := CXV-PX ; R2Y := CYV-PY ; R2Z := CZV-PZ ;
+      R0 := SQRT(R0X*R0X + R0Y*R0Y + R0Z*R0Z) ;
+      R1 := SQRT(R1X*R1X + R1Y*R1Y + R1Z*R1Z) ;
+      R2 := SQRT(R2X*R2X + R2Y*R2Y + R2Z*R2Z) ;
+      IF NOT((CONS(R0)<1E-15)+(CONS(R1)<1E-15)+(CONS(R2)<1E-15)) ;
+      {Solid angle via van Oosterom-Strackee. Its numerator is exactly
+       R0 dot ((B-A) cross (C-A)) = -2*area*height. Form it from the fixed
+       geometry instead of subtracting observer-dependent triple products.}
+      NUM := R0X*NX + R0Y*NY + R0Z*NZ ;
+      DENV := R0*R1*R2 + (R0X*R1X+R0Y*R1Y+R0Z*R1Z)*R2
+                        + (R0X*R2X+R0Y*R2Y+R0Z*R2Z)*R1
+                        + (R1X*R2X+R1Y*R2Y+R1Z*R2Z)*R0 ;
+      FNX := NX ; FNY := NY ; FNZ := NZ ;
+      NX := NX/NMAG ; NY := NY/NMAG ; NZ := NZ/NMAG ;
+      DENCOND := 1 ;
+      {Use the direct log only if its gap/sum ratio exceeds 1e-3. This bounds
+       constant-term subtraction amplification by 1e3 and avoids helper calls
+       at ordinary points. The constant parts select one analytic DA chart.
+       Otherwise rationalize the edge and use the closest such edge for DENV.}
+      {Edge 0: A→B (log terms negative: H = -grad Phi)}
+      EX := BXV-AX ; EY := BYV-AY ; EZ := BZV-AZ ;
+      EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
+      IF EL>1E-15 ;
+         EX := EX/EL ; EY := EY/EL ; EZ := EZ/EL ;
+         GAP := R0+R1-EL ; SUMP := R0+R1+EL ;
+         IF CONS(GAP)>1E-3*CONS(SUMP) ;
+            LL := LOG(SUMP/GAP) ;
+         ELSEIF LO(1) ;
+            TC := R2X*EX + R2Y*EY + R2Z*EZ ;
+            SI_VFIELD_TRI_EDGE_NEAR R0X R0Y R0Z R1X R1Y R1Z R0 R1 R2 E1X E1Y E1Z EL FNX FNY FNZ TC LL DEDGE ;
+            COND := CONS(GAP)/CONS(SUMP) ;
+            IF COND<DENCOND ; DENV := DEDGE ; DENCOND := COND ; ENDIF ;
+         ENDIF ;
+         CRVX := NY*EZ - NZ*EY ; CRVY := NZ*EX - NX*EZ ; CRVZ := NX*EY - NY*EX ;
+         SI_VFR_BX := SI_VFR_BX - FAC*LL*CRVX ;
+         SI_VFR_BY := SI_VFR_BY - FAC*LL*CRVY ;
+         SI_VFR_BZ := SI_VFR_BZ - FAC*LL*CRVZ ;
+      ENDIF ;
+      {Edge 1: B→C}
+      EX := CXV-BXV ; EY := CYV-BYV ; EZ := CZV-BZV ;
+      EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
+      IF EL>1E-15 ;
+         EX := EX/EL ; EY := EY/EL ; EZ := EZ/EL ;
+         GAP := R1+R2-EL ; SUMP := R1+R2+EL ;
+         IF CONS(GAP)>1E-3*CONS(SUMP) ;
+            LL := LOG(SUMP/GAP) ;
+         ELSEIF LO(1) ;
+            TC := R0X*EX + R0Y*EY + R0Z*EZ ;
+            SI_VFIELD_TRI_EDGE_NEAR R1X R1Y R1Z R2X R2Y R2Z R1 R2 R0 CXV-BXV CYV-BYV CZV-BZV EL FNX FNY FNZ TC LL DEDGE ;
+            COND := CONS(GAP)/CONS(SUMP) ;
+            IF COND<DENCOND ; DENV := DEDGE ; DENCOND := COND ; ENDIF ;
+         ENDIF ;
+         CRVX := NY*EZ - NZ*EY ; CRVY := NZ*EX - NX*EZ ; CRVZ := NX*EY - NY*EX ;
+         SI_VFR_BX := SI_VFR_BX - FAC*LL*CRVX ;
+         SI_VFR_BY := SI_VFR_BY - FAC*LL*CRVY ;
+         SI_VFR_BZ := SI_VFR_BZ - FAC*LL*CRVZ ;
+      ENDIF ;
+      {Edge 2: C→A}
+      EX := AX-CXV ; EY := AY-CYV ; EZ := AZ-CZV ;
+      EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
+      IF EL>1E-15 ;
+         EX := EX/EL ; EY := EY/EL ; EZ := EZ/EL ;
+         GAP := R2+R0-EL ; SUMP := R2+R0+EL ;
+         IF CONS(GAP)>1E-3*CONS(SUMP) ;
+            LL := LOG(SUMP/GAP) ;
+         ELSEIF LO(1) ;
+            TC := R1X*EX + R1Y*EY + R1Z*EZ ;
+            SI_VFIELD_TRI_EDGE_NEAR R2X R2Y R2Z R0X R0Y R0Z R2 R0 R1 AX-CXV AY-CYV AZ-CZV EL FNX FNY FNZ TC LL DEDGE ;
+            COND := CONS(GAP)/CONS(SUMP) ;
+            IF COND<DENCOND ; DENV := DEDGE ; DENCOND := COND ; ENDIF ;
+         ENDIF ;
+         CRVX := NY*EZ - NZ*EY ; CRVY := NZ*EX - NX*EZ ; CRVZ := NX*EY - NY*EX ;
+         SI_VFR_BX := SI_VFR_BX - FAC*LL*CRVX ;
+         SI_VFR_BY := SI_VFR_BY - FAC*LL*CRVY ;
+         SI_VFR_BZ := SI_VFR_BZ - FAC*LL*CRVZ ;
+      ENDIF ;
+      OMEGA := 2*ATAN2(NUM,DENV) ;
+      {mu0 H = -(σ/4π)∇G: solid angle term is -(σ/4π)*Ω*n̂.}
+      SI_VFR_BX := SI_VFR_BX - FAC * OMEGA * NX ;
+      SI_VFR_BY := SI_VFR_BY - FAC * OMEGA * NY ;
+      SI_VFR_BZ := SI_VFR_BZ - FAC * OMEGA * NZ ;
+      ENDIF ; {R check}
+      ENDIF ; {NMAG check}
+      ENDIF ; {FAC check}
+   ENDPROCEDURE ;

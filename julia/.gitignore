@@ -1,0 +1,10 @@
+Manifest.toml
+*.so
+*.o
+*.mod
+build/
+.julia/
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+/tmp/

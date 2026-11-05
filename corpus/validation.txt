@@ -1,0 +1,11 @@
+test_all_refinement_and_scalar_controls (test_reference.ReferenceTests.test_all_refinement_and_scalar_controls) ... ok
+test_charge_length_translation_and_winding_invariance (test_reference.ReferenceTests.test_charge_length_translation_and_winding_invariance) ... ok
+test_far_monopole_and_average_trace (test_reference.ReferenceTests.test_far_monopole_and_average_trace) ... ok
+test_integrity_and_complete_coverage (test_reference.ReferenceTests.test_integrity_and_complete_coverage) ... ok
+test_map_against_displaced_green_integral (test_reference.ReferenceTests.test_map_against_displaced_green_integral) ... ok
+test_vacuum_divergence_and_curl_all_retained_degrees (test_reference.ReferenceTests.test_vacuum_divergence_and_curl_all_retained_degrees) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.630s
+
+OK

@@ -1,0 +1,17 @@
+build/
+__pycache__/
+*.py[cod]
+*.o
+*.mod
+*.so
+*.dylib
+*.a
+*.egg-info/
+dist/
+.venv/
+Manifest.toml
+*.tan
+COSY.bin
+run.fox
+fort.*
+local-results/

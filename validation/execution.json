@@ -1,0 +1,42 @@
+[
+  {
+    "step": "ci",
+    "returncode": 0,
+    "wall_s": 132.32005834579468
+  },
+  {
+    "step": "benchmark",
+    "returncode": 0,
+    "wall_s": 3.5997989177703857
+  },
+  {
+    "step": "ports",
+    "returncode": 0,
+    "wall_s": 118.11428689956665
+  },
+  {
+    "step": "jax",
+    "returncode": 0,
+    "wall_s": 47.29856204986572
+  },
+  {
+    "step": "cosy",
+    "returncode": 0,
+    "wall_s": 39.23999238014221
+  },
+  {
+    "step": "complete_ci_after_review_repairs",
+    "returncode": 0,
+    "log": "ci.txt",
+    "repairs": [
+      "C++ thread-safe table initialization",
+      "Julia oversized standalone order validation",
+      "Julia evaluate_map shape and index checks"
+    ]
+  },
+  {
+    "step": "standalone_port_benchmarks_after_review_repairs",
+    "returncode": 0,
+    "samples": "ports.json"
+  }
+]

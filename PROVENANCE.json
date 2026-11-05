@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "release_kind": "public source release",
+  "native_source_commit": "fdcf5a956b30835f60e9dd02da00beea90ebe77d",
+  "cpp_initial_commit": "4d94e3d99",
+  "julia_initial_commit": "8d8c569bd",
+  "integration_commit_before_evidence": "712e208b1",
+  "packaging_changes": [
+    "portable source paths and build rules",
+    "native clients validate numeric ranges before integer conversion",
+    "native clients clear allocations before unloading; Julia failed reload invalidates context",
+    "Julia pi conversion retains scoped BigFloat precision",
+    "Python import/package adaptations and serialized native batch client",
+    "C++ shared tables initialize with std::call_once",
+    "Julia standalone orders are checked before integer conversion; map dimensions and indexing are validated"
+  ],
+  "native_sources_unchanged": {
+    "fortran/native/tan_mod.f90": "561dd18b2b8f5c294a13de5443bb07f48ec38dd7007b766c4a40e055e2c9b655",
+    "fortran/native/tan_jet.f90": "094a28c34eb46979462aac5271b7832cb9b55efd9c0171385def225dab45a0a3",
+    "fortran/triangle_exact_geometry.c": "e25796126bc69576d57bde2aec23c1c40b2b6013fe0232dd4dcd15cbb32b9d8c",
+    "cosy/triangle_assembly_proc.f": "9bed2054ad76fe1e51dec1d068680bf0eb0da9273fe1ddc6dea739cca7be41da"
+  },
+  "independent_cases_sha256": "d85b9c0af019774b88aad032a8819bc8a1e7aa2cb2997a9bd675a0a2cb55e9fd",
+  "tested_versions": {
+    "gcc_gfortran_gxx": "14.3.1",
+    "python": "3.12.15",
+    "numpy": "2.4.3",
+    "mpmath": "1.3.0",
+    "julia": "1.12.6",
+    "jax": "0.10.1",
+    "jaxlib": "0.10.1"
+  },
+  "distribution": "Source, corpus and validation data only; external licensed COSY runtime/library and all dependency binaries excluded.",
+  "reference_source_commit": "8a06fa62af1cce2f3309052d14bb4b0cc3f8e269"
+}

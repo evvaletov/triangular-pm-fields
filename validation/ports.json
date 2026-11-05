@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "scope": "Reproducible standalone CLI batch cost, including startup, JIT, parsing and JSON.\n\nThis measures end-to-end calls, not warm library kernels. The C++ and Julia\nimplementations use different internal precision. Every output is checked\nagainst a frozen independent reference before its timing is retained.\n",
+  "results": [
+    {
+      "provider": "cpp",
+      "order": 1,
+      "cases_per_process": 16,
+      "process_startup_and_jit_included": true,
+      "parsing_and_json_included": true,
+      "excluded_process_warmups": 1,
+      "wall_s": [
+        0.08587398286908865,
+        0.07217489508911967,
+        0.07214565575122833
+      ],
+      "median_wall_s": 0.07217489508911967
+    },
+    {
+      "provider": "julia",
+      "order": 1,
+      "cases_per_process": 16,
+      "process_startup_and_jit_included": true,
+      "parsing_and_json_included": true,
+      "excluded_process_warmups": 1,
+      "wall_s": [
+        7.98256208980456,
+        8.060820877086371,
+        8.159468573052436
+      ],
+      "median_wall_s": 8.060820877086371
+    },
+    {
+      "provider": "cpp",
+      "order": 2,
+      "cases_per_process": 16,
+      "process_startup_and_jit_included": true,
+      "parsing_and_json_included": true,
+      "excluded_process_warmups": 1,
+      "wall_s": [
+        0.08330814586952329,
+        0.08506539324298501,
+        0.08233092725276947
+      ],
+      "median_wall_s": 0.08330814586952329
+    },
+    {
+      "provider": "julia",
+      "order": 2,
+      "cases_per_process": 16,
+      "process_startup_and_jit_included": true,
+      "parsing_and_json_included": true,
+      "excluded_process_warmups": 1,
+      "wall_s": [
+        7.590141859836876,
+        7.519615666009486,
+        7.554045906756073
+      ],
+      "median_wall_s": 7.554045906756073
+    },
+    {
+      "provider": "cpp",
+      "order": 6,
+      "cases_per_process": 16,
+      "process_startup_and_jit_included": true,
+      "parsing_and_json_included": true,
+      "excluded_process_warmups": 1,
+      "wall_s": [
+        0.5485527040436864,
+        0.6067791888490319,
+        0.5646341643296182
+      ],
+      "median_wall_s": 0.5646341643296182
+    },
+    {
+      "provider": "julia",
+      "order": 6,
+      "cases_per_process": 16,
+      "process_startup_and_jit_included": true,
+      "parsing_and_json_included": true,
+      "excluded_process_warmups": 1,
+      "wall_s": [
+        9.507334447931498,
+        8.868847290985286,
+        8.6644829059951
+      ],
+      "median_wall_s": 8.868847290985286
+    }
+  ]
+}
