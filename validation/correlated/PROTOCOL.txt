@@ -1,0 +1,71 @@
+INDEPENDENT FIXED-COVARIANCE GLS REFERENCE -- frozen 5 November 2026
+Model: Codex gpt-6-astra. Candidate source has not been inspected.
+
+Tiny fixtures use rational inputs and 80-decimal-digit mpmath linear solves.
+Normal equations occur only in this tiny high-precision oracle. Expected H,
+theta, parameter covariance, prediction covariance, both residuals and both
+chi-squares are committed before importing the candidate. Comparison tolerance
+is rtol=2e-11, atol=2e-12 (all fixture units are order one, except the explicit
+unit transformation). Reject singular covariance, rank loss, underdetermination,
+indefinite covariance and gross asymmetry; no clipping or jitter is authorized.
+
+Analytic gain toy: y_i=theta*x_i + theta*x_i*g + eps_i, independent g~N(0,tau^2)
+and eps_i~N(0,sigma^2). theta=2, tau=1/5, sigma=1/10 are known design values
+used to FIX the covariance, never estimated from the observations. x_t=(1,2,3),
+x_h=(4,5). H=x_t^T/(x_t^T x_t); Var(theta_hat)=theta^2*tau^2+sigma^2/14.
+For replicated training samples, sigma^2/sum(x_t^2) tends to zero but the
+theta^2*tau^2 floor remains. Since K*x_t=x_h, the shared gain cancels from the
+holdout residual: C_r=sigma^2*(I+x_h*x_h^T/14). Discarding C_th and C_ht while
+retaining their marginal covariances spuriously adds 2*theta^2*tau^2*x_h*x_h^T.
+This cancellation does NOT imply vanishing parameter/predicted-field uncertainty.
+
+Synthetic PM ensemble, fixed before any ensemble output:
+Input: field_fit_20261103/references/arrays.npz from the existing independently
+validated rectangular-field response campaign. Use nominal_holdout[:64], all
+three field components at each point, flatten point then component; first32
+points train, last32 hold out. Six columns are magnet then lab J component.
+Truth theta=(0,1.2,0,0,1.2,0) T. Use the same nominal polarization as the existing
+geometry_sensitivity_fine. Position sensitivity at each point is minus the sum
+of the two block-center derivative columns, D=-(S[:,:,0:3]+S[:,:,9:12]). These
+columns are fixed approximations from the existing validated sensitivity arrays.
+No new nonlinear position-error accuracy or derivative convergence claim.
+
+Independent point/component white noise standard deviations (10,15,20) microT;
+one common scalar gain sd=0.001; common per-axis offsets sd=(20,25,30) microT;
+one shared global observer displacement sd=(25,35,45) micrometres. All seven
+standard-normal shared latent variables and all white errors are independent.
+U=[0.001*A*theta, axis-offset columns, D*position_sd]. C=diag(white_sd^2)+U*U^T
+in joint train/holdout order. It is supplied as known and fixed, independent of
+sampled observations. Sample errors directly as white_sd*z+U*w, not through the
+candidate's covariance factor. C is a deliberately chosen synthetic model;
+the gain covariance depends on fixed design truth, not a plug-in estimate.
+
+NumPy default_rng(2026110507), N=4096 complete scans. Draw white normals (N,192)
+first, then shared normals (N,7). No rejection, seed search or tuning after
+output. Independent estimator uses whitened QR, not candidate SVD or normal
+equations. Candidate comparisons use rtol=2e-10 and scale-relative atol=2e-12
+times maximum absolute reference entry; prediction/residual comparisons allow
+absolute 2e-12 T for subtractive rounding. Each sample calls fit/evaluate_holdout.
+
+Frozen statistical gates (all must pass):
+1. Cholesky-whitened parameter-error mean: max abs(mean)*sqrt(N) <=6.
+2. Every centered unbiased whitened parameter covariance entry and whitened
+   holdout-residual covariance entry: abs(S_ij-delta_ij) /
+   sqrt((1+delta_ij)/(N-1)) <=6. These are Gaussian/Wishart standard errors;
+   the 6-sigma bounds are conservative diagnostics, not a joint confidence claim.
+3. Mean training and holdout chi-square differ from their degrees of freedom
+   (90 and96) by <=6*sqrt(2*dof/N). Their unbiased sample variance differs from
+   2*dof by <=6*sqrt((mu4-(N-3)/(N-1)*(2*dof)^2)/N),
+   mu4=12*dof^2+48*dof. This is the exact variance of sample variance.
+4. Each physical parameter's marginal central95% coverage using z=1.959963984540054
+   differs from0.95 by <=6*sqrt(0.95*0.05/N). No simultaneous-coverage claim.
+
+Meaning: C_r is the UNCONDITIONAL covariance of y_h-A_h*theta_hat, including
+train/holdout cross terms; it is not a conditional predictive covariance.
+[-K,I] has full row rank, hence C_r is SPD for SPD C. Under the fixed full-rank
+Gaussian model, the quadratic holdout residual has chi-square n_h marginally;
+no independence from training chi-square is asserted or required. No validity
+is asserted for learned covariance, nonlinear placement perturbations, fitted
+geometry, physical experimental scans, or real-instrument coverage.
+
+Resources: CPU7, one BLAS/OpenMP thread, <=600s per worker, <=8GiB, no GPU/HPC.

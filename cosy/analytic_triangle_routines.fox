@@ -32,9 +32,15 @@
          CZ := (RBX*EY - RBY*EX)/EL ;
       ENDIF ;
       RHO2 := CX*CX + CY*CY + CZ*CZ ;
+      IF (NOT(CONS(RA+SU*U)>0))+(NOT(CONS(RB+SW*W)>0)) ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: edge rationalization' ; QUIT -1 ;
+      ENDIF ;
       GA := (SU-1)*U + RHO2/(RA+SU*U) ;
       GB := (SW-1)*W + RHO2/(RB+SW*W) ;
       GAP := GA+GB ;
+      IF NOT(CONS(GAP)>0) ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: edge log gap' ; QUIT -1 ;
+      ENDIF ;
       LL := LOG(1+2*EL/GAP) ;
       {Exact local rearrangement of the van Oosterom-Strackee denominator:
        RA*RB+rA.rB=GAP*(RA+RB+EL)/2;
@@ -48,7 +54,11 @@
    PROCEDURE SI_VFIELD_TRI_CHARGE AX AY AZ BXV BYV BZV CXV CYV CZV SIGMA PX PY PZ ;
       {ACCUMULATE field at (PX,PY,PZ) from uniformly charged triangle (A,B,C).
        Vertices ordered so (B-A)×(C-A) = outward normal. σ/(4π) convention.
-       Result ADDED to SI_VFR_BX/BY/BZ globals.}
+       Result ADDED to SI_VFR_BX/BY/BZ globals only after success.
+       SIGMA=0 is an exact no-op, even for degenerate geometry. For nonzero
+       charge the conservative domain in cosy/README.md is enforced by
+       QUIT -1 with a TRI ANALYTIC UNSUPPORTED diagnostic. In particular this
+       routine does not implement the native cache exact-boundary policy.}
       VARIABLE E1X 1 ; VARIABLE E1Y 1 ; VARIABLE E1Z 1 ;
       VARIABLE E2X 1 ; VARIABLE E2Y 1 ; VARIABLE E2Z 1 ;
       VARIABLE NX 1 ; VARIABLE NY 1 ; VARIABLE NZ 1 ; VARIABLE NMAG 1 ;
@@ -63,9 +73,14 @@
       VARIABLE GAP NM1+1 ; VARIABLE SUMP NM1+1 ; VARIABLE TC NM1+1 ; VARIABLE DEDGE NM1+1 ;
       VARIABLE COND 1 ; VARIABLE DENCOND 1 ;
       VARIABLE FAC 1 ;
+      VARIABLE DBX NM1+1 ; VARIABLE DBY NM1+1 ; VARIABLE DBZ NM1+1 ;
       DEF ;
+      IF SIGMA#0 ;
       FAC := SIGMA / (4*PI) ;
-      IF NOT(ABS(FAC)<1E-30) ;
+      IF ABS(FAC)<1E-30 ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: nonzero charge scale' ; QUIT -1 ;
+      ENDIF ;
+      DBX := 0 ; DBY := 0 ; DBZ := 0 ;
       {Face normal from vertex ordering}
       E1X := BXV-AX ; E1Y := BYV-AY ; E1Z := BZV-AZ ;
       E2X := CXV-AX ; E2Y := CYV-AY ; E2Z := CZV-AZ ;
@@ -73,15 +88,43 @@
       NY := E1Z*E2X - E1X*E2Z ;
       NZ := E1X*E2Y - E1Y*E2X ;
       NMAG := SQRT(NX*NX + NY*NY + NZ*NZ) ;
-      IF NOT(NMAG<1E-30) ;
+      IF NMAG<1E-30 ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: face normal scale' ; QUIT -1 ;
+      ENDIF ;
+      {Preflight ALL edges before any field accumulation.}
+      EL := SQRT(E1X*E1X + E1Y*E1Y + E1Z*E1Z) ;
+      IF NOT(EL>1E-15) ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: edge length' ; QUIT -1 ;
+      ENDIF ;
+      EX := CXV-BXV ; EY := CYV-BYV ; EZ := CZV-BZV ;
+      EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
+      IF NOT(EL>1E-15) ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: edge length' ; QUIT -1 ;
+      ENDIF ;
+      EL := SQRT(E2X*E2X + E2Y*E2Y + E2Z*E2Z) ;
+      IF NOT(EL>1E-15) ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: edge length' ; QUIT -1 ;
+      ENDIF ;
       {Vectors from P to vertices}
       R0X := AX-PX ; R0Y := AY-PY ; R0Z := AZ-PZ ;
       R1X := BXV-PX ; R1Y := BYV-PY ; R1Z := BZV-PZ ;
       R2X := CXV-PX ; R2Y := CYV-PY ; R2Z := CZV-PZ ;
+      IF SQRT(CONS(R0X)^2+CONS(R0Y)^2+CONS(R0Z)^2)<1E-15 ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: vertex distance' ; QUIT -1 ;
+      ENDIF ;
+      IF SQRT(CONS(R1X)^2+CONS(R1Y)^2+CONS(R1Z)^2)<1E-15 ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: vertex distance' ; QUIT -1 ;
+      ENDIF ;
+      IF SQRT(CONS(R2X)^2+CONS(R2Y)^2+CONS(R2Z)^2)<1E-15 ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: vertex distance' ; QUIT -1 ;
+      ENDIF ;
+      NUM := R0X*NX + R0Y*NY + R0Z*NZ ;
+      IF CONS(NUM)=0 ;
+         WRITE 6 'TRI ANALYTIC UNSUPPORTED: coplanar observer' ; QUIT -1 ;
+      ENDIF ;
       R0 := SQRT(R0X*R0X + R0Y*R0Y + R0Z*R0Z) ;
       R1 := SQRT(R1X*R1X + R1Y*R1Y + R1Z*R1Z) ;
       R2 := SQRT(R2X*R2X + R2Y*R2Y + R2Z*R2Z) ;
-      IF NOT((CONS(R0)<1E-15)+(CONS(R1)<1E-15)+(CONS(R2)<1E-15)) ;
       {Solid angle via van Oosterom-Strackee. Its numerator is exactly
        R0 dot ((B-A) cross (C-A)) = -2*area*height. Form it from the fixed
        geometry instead of subtracting observer-dependent triple products.}
@@ -99,7 +142,6 @@
       {Edge 0: A→B (log terms negative: H = -grad Phi)}
       EX := BXV-AX ; EY := BYV-AY ; EZ := BZV-AZ ;
       EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
-      IF EL>1E-15 ;
          EX := EX/EL ; EY := EY/EL ; EZ := EZ/EL ;
          GAP := R0+R1-EL ; SUMP := R0+R1+EL ;
          IF CONS(GAP)>1E-3*CONS(SUMP) ;
@@ -111,14 +153,12 @@
             IF COND<DENCOND ; DENV := DEDGE ; DENCOND := COND ; ENDIF ;
          ENDIF ;
          CRVX := NY*EZ - NZ*EY ; CRVY := NZ*EX - NX*EZ ; CRVZ := NX*EY - NY*EX ;
-         SI_VFR_BX := SI_VFR_BX - FAC*LL*CRVX ;
-         SI_VFR_BY := SI_VFR_BY - FAC*LL*CRVY ;
-         SI_VFR_BZ := SI_VFR_BZ - FAC*LL*CRVZ ;
-      ENDIF ;
+         DBX := DBX - FAC*LL*CRVX ;
+         DBY := DBY - FAC*LL*CRVY ;
+         DBZ := DBZ - FAC*LL*CRVZ ;
       {Edge 1: B→C}
       EX := CXV-BXV ; EY := CYV-BYV ; EZ := CZV-BZV ;
       EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
-      IF EL>1E-15 ;
          EX := EX/EL ; EY := EY/EL ; EZ := EZ/EL ;
          GAP := R1+R2-EL ; SUMP := R1+R2+EL ;
          IF CONS(GAP)>1E-3*CONS(SUMP) ;
@@ -130,14 +170,12 @@
             IF COND<DENCOND ; DENV := DEDGE ; DENCOND := COND ; ENDIF ;
          ENDIF ;
          CRVX := NY*EZ - NZ*EY ; CRVY := NZ*EX - NX*EZ ; CRVZ := NX*EY - NY*EX ;
-         SI_VFR_BX := SI_VFR_BX - FAC*LL*CRVX ;
-         SI_VFR_BY := SI_VFR_BY - FAC*LL*CRVY ;
-         SI_VFR_BZ := SI_VFR_BZ - FAC*LL*CRVZ ;
-      ENDIF ;
+         DBX := DBX - FAC*LL*CRVX ;
+         DBY := DBY - FAC*LL*CRVY ;
+         DBZ := DBZ - FAC*LL*CRVZ ;
       {Edge 2: C→A}
       EX := AX-CXV ; EY := AY-CYV ; EZ := AZ-CZV ;
       EL := SQRT(EX*EX + EY*EY + EZ*EZ) ;
-      IF EL>1E-15 ;
          EX := EX/EL ; EY := EY/EL ; EZ := EZ/EL ;
          GAP := R2+R0-EL ; SUMP := R2+R0+EL ;
          IF CONS(GAP)>1E-3*CONS(SUMP) ;
@@ -149,16 +187,16 @@
             IF COND<DENCOND ; DENV := DEDGE ; DENCOND := COND ; ENDIF ;
          ENDIF ;
          CRVX := NY*EZ - NZ*EY ; CRVY := NZ*EX - NX*EZ ; CRVZ := NX*EY - NY*EX ;
-         SI_VFR_BX := SI_VFR_BX - FAC*LL*CRVX ;
-         SI_VFR_BY := SI_VFR_BY - FAC*LL*CRVY ;
-         SI_VFR_BZ := SI_VFR_BZ - FAC*LL*CRVZ ;
-      ENDIF ;
+         DBX := DBX - FAC*LL*CRVX ;
+         DBY := DBY - FAC*LL*CRVY ;
+         DBZ := DBZ - FAC*LL*CRVZ ;
       OMEGA := 2*ATAN2(NUM,DENV) ;
       {mu0 H = -(σ/4π)∇G: solid angle term is -(σ/4π)*Ω*n̂.}
-      SI_VFR_BX := SI_VFR_BX - FAC * OMEGA * NX ;
-      SI_VFR_BY := SI_VFR_BY - FAC * OMEGA * NY ;
-      SI_VFR_BZ := SI_VFR_BZ - FAC * OMEGA * NZ ;
-      ENDIF ; {R check}
-      ENDIF ; {NMAG check}
-      ENDIF ; {FAC check}
+      DBX := DBX - FAC * OMEGA * NX ;
+      DBY := DBY - FAC * OMEGA * NY ;
+      DBZ := DBZ - FAC * OMEGA * NZ ;
+      SI_VFR_BX := SI_VFR_BX + DBX ;
+      SI_VFR_BY := SI_VFR_BY + DBY ;
+      SI_VFR_BZ := SI_VFR_BZ + DBZ ;
+      ENDIF ; {Exactly zero charge is a no-op}
    ENDPROCEDURE ;

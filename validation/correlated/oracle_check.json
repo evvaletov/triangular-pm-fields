@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "positive_cases": [
+    "correlated_rational",
+    "diagonal",
+    "noiseless",
+    "reordered",
+    "row_units_and_parameter_coordinates",
+    "shared_scalar_gain"
+  ],
+  "rejected_cases": [
+    "rank_deficient",
+    "underdetermined",
+    "singular_joint",
+    "indefinite_joint",
+    "asymmetric_joint"
+  ],
+  "shared_gain_cross_covariance_negative_control": true,
+  "gain_parameter_variance_floor": 0.16,
+  "candidate_sha256": "d45a529e981b5d62df83d0dae72e3e058c3cadc833798cbd5e61995b152f7483",
+  "fixture_sha256": "097423add426b03bcb4785cf04c0508d1b8eca817ae0e04056fc5298bc054a42"
+}

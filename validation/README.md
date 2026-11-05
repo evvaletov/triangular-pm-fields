@@ -1,4 +1,33 @@
-# Validation record — 4 November 2026
+# Validation record
+
+## Correlated-fit extension, 5 November 2026
+
+The [0.2.0 check](recheck-20261105.json) passed 67 Python tests, 119 Fortran
+checks, the C-ABI regression, 84 C++ checks, 218 Julia assertions, and all
+639 cross-language provider/case comparisons. The loader now checks cache
+counts before allocation and reports Fortran allocation failures as status 2.
+Six bounded C-ABI reload cases exercise malformed counts, truncation and
+allocation failure. Field evaluation arithmetic is unchanged.
+
+A rebuilt licensed COSY runtime passed all 87 native corpus cases and the
+composition, alias, capacity, mode and reload checks. Nine analytic-routine
+cases also passed, including a seeded first-order DA accumulation compared
+with independent surface quadrature. Inputs outside that routine's documented
+domain now fail explicitly. The new [native](cosy-recheck-20261105.json),
+[composition](cosy-composition-20261105.json) and
+[analytic](cosy-analytic-20261105.json) records retain the source/runtime evidence.
+The earlier field qualification below remains dated 4 November.
+
+The new statistical module passed six independent 80-digit positive fixtures
+and five rejection cases. It also matched an independent QR estimator for
+4,096 complete synthetic scan pairs with shared gain, offset and fixed
+position-sensitivity errors. All frozen statistical gates passed. Marginal
+95% parameter coverage ranged from 94.85% to 95.53%. These results concern
+the specified Gaussian model; no physical PM scan was available.
+The [correlated-fit record](correlated/README.md) includes the inputs,
+protocol, checkers and [numerical results](correlated/gaussian_check.json).
+
+## Field qualification, 4 November 2026
 
 A clean source export built with GNU 14.3.1, Python 3.12.15, and Julia 1.12.6
 passed the checks below. The Python wheel also installed in a separate virtual

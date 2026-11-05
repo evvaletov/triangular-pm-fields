@@ -23,7 +23,7 @@ five-language checks and complete comparison arrays.
 | Fortran | Cached assembly engine, scalar modes and complete degree-six Taylor maps | GNU Fortran with real128; GMP |
 | COSY INFINITY | TRLOAD/TRFLD native bridge and project analytic FOX routines | Compatible licensed runtime and macro library, supplied separately |
 | C++ | Standalone high-precision triangle evaluator and native C-ABI client | Boost headers; native library only for the native client |
-| Python | Geometry preparation, persistent geometry cache, native client, analytic/jet baseline | NumPy, mpmath; native library for the native client |
+| Python | Geometry preparation, persistent geometry cache, native client, analytic/jet baseline, correlated linear fitting | NumPy, mpmath; native library for the native client |
 | Julia | Standalone high-precision triangle evaluator and native C-ABI client | Julia; native library only for the native client |
 
 The native clients share one physical engine. Agreement between those clients
@@ -134,3 +134,14 @@ reported as executed merely because saved output is present.
 
 The standalone Python baseline has a separate
 [API and domain description](docs/python-reference.md).
+
+## Fitting with correlated errors
+
+The Python package also provides a linear fit with a known joint covariance
+for training and held-out observations. It carries shared errors through
+parameter uncertainty and held-out residuals, including the cross covariance
+between scans. See [the fitting contract](docs/correlated-fitting.md) and run
+`python examples/python_correlated_fit.py` for a synthetic example.
+
+These checks use synthetic observations. Physical magnet validation requires
+measured scans, matching geometry, and independent calibration records.

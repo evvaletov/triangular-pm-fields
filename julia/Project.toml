@@ -1,6 +1,6 @@
 name = "TriangularPMFields"
 uuid = "bdbaba9e-d885-4216-987a-16d1d290da96"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Eremey Valetov <evv@msu.edu>"]
 
 [deps]

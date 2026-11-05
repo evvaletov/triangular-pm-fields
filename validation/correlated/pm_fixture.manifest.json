@@ -1,0 +1,54 @@
+{
+  "source_npz_sha256": "2be01e25ef4f505dd643d2b8dadcd88524de8984e8c56635d69d6c76cb44685e",
+  "output_npz_sha256": "768cb8a4a740e07e1d7b673b3cd3388a40c9e4c7f4321520a9ea156945d09dfe",
+  "source_campaign": "papers/triangular_pm_20261027/field_fit_20261103/references/arrays.npz",
+  "selection": "first64 entries along axis0 of each named source array",
+  "interpretation": "fixed numerical fixture for synthetic Gaussian verification; no new physical validation",
+  "array_hash_convention": "SHA256 of C-contiguous raw bytes; dtype and shape recorded separately",
+  "arrays": {
+    "nominal_holdout": {
+      "shape": [
+        64,
+        3,
+        2,
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "25a61bbbf4765efbad78791f04a438bf4a23f9f2784e828fd717c70356bb2088"
+    },
+    "geometry_sensitivity_coarse": {
+      "shape": [
+        64,
+        3,
+        18
+      ],
+      "dtype": "<f8",
+      "sha256": "7a5d225969f7b73e97a31c66ce610ec73b757d43ae3b1f3c9b6ca47039c696a2"
+    },
+    "geometry_sensitivity_fine": {
+      "shape": [
+        64,
+        3,
+        18
+      ],
+      "dtype": "<f8",
+      "sha256": "ac9b43a42f2c6478e3269200b8eb4e34d8bc0718214652fbcc93a0ce9339c26f"
+    },
+    "holdout_points": {
+      "shape": [
+        64,
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "fd85d576a36a85e3d22fbcba7a63cfa1b604d32008f630bbda420ca277ef5b78"
+    },
+    "tolerance_points": {
+      "shape": [
+        64,
+        3
+      ],
+      "dtype": "<f8",
+      "sha256": "fd85d576a36a85e3d22fbcba7a63cfa1b604d32008f630bbda420ca277ef5b78"
+    }
+  }
+}

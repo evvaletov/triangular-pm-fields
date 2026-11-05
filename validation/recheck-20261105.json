@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-05",
+  "version": "0.2.0",
+  "command": "bash tools/ci.sh",
+  "exit_code": 0,
+  "python_tests": 67,
+  "native_fortran_checks": 119,
+  "c_abi_regression": true,
+  "cpp_checks": 84,
+  "julia_assertions": 218,
+  "executed_by_provider": {
+    "python_analytic": 48,
+    "cpp_standalone": 105,
+    "julia_standalone": 105,
+    "fortran_native": 98,
+    "python_native": 87,
+    "cpp_native": 98,
+    "julia_native": 98
+  },
+  "field_comparisons": 639,
+  "field_comparisons_passed": true,
+  "correlated_high_precision_positive_cases": 6,
+  "correlated_high_precision_rejection_cases": 5,
+  "correlated_complete_synthetic_scan_pairs": 4096,
+  "correlated_statistical_gates_passed": true,
+  "statistical_implementation_sha256": "d45a529e981b5d62df83d0dae72e3e058c3cadc833798cbd5e61995b152f7483",
+  "native_sources_unchanged": {
+    "fortran/native/tan_jet.f90": "094a28c34eb46979462aac5271b7832cb9b55efd9c0171385def225dab45a0a3",
+    "fortran/triangle_exact_geometry.c": "e25796126bc69576d57bde2aec23c1c40b2b6013fe0232dd4dcd15cbb32b9d8c",
+    "cosy/triangle_assembly_proc.f": "9bed2054ad76fe1e51dec1d068680bf0eb0da9273fe1ddc6dea739cca7be41da"
+  },
+  "licensed_cosy_execution_this_revision": true,
+  "licensed_cosy_evidence": "Fresh rebuilt runtime:87 native corpus cases and9 analytic routine cases actually executed.",
+  "experimental_validation": false,
+  "installed_wheel_version": "0.2.0",
+  "installed_wheel_isolated_import_and_fit_passed": true,
+  "wheel_build_note": "Standard PEP517 build isolation passed; an initial manual no-build-isolation attempt lacked bdist_wheel in its environment.",
+  "native_loader_repair": {
+    "prior_sha256": "561dd18b2b8f5c294a13de5443bb07f48ec38dd7007b766c4a40e055e2c9b655",
+    "sha256": "a91c2abf3633b5ec7b804be00ad44e27368f5d5bd5c7a1d4fd09145b33f5893d",
+    "bounded_c_abi_reload_cases": 6
+  },
+  "licensed_cosy_native_cases": 87,
+  "licensed_cosy_analytic_cases": 9,
+  "licensed_cosy_runtime_sha256": "a58e3cb137decd41548dcb56e26e14afc09eb8d2d0eabd7d08e69949211a28a3",
+  "licensed_cosy_bridge_composition_passed": true,
+  "correlated_focused_tests": 21,
+  "cpp_native_make_tests_passed": true,
+  "cpp_native_make_source_prerequisites_passed": true,
+  "installed_wheel_sha256": "e938f7d946d5d7bbe6663ba4352c0391856074bc7f51818a7d0de68373067147",
+  "installed_wheel_subnormal_guard_passed": true
+}

@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "seed": 2026110507,
+  "scans": 4096,
+  "fixed_covariance_model": "white + shared gain + axis offsets + fixed global position sensitivity",
+  "interpretation": "synthetic fixed known joint Gaussian covariance; unconditional holdout residual",
+  "arrays_sha256": "768cb8a4a740e07e1d7b673b3cd3388a40c9e4c7f4321520a9ea156945d09dfe",
+  "protocol_sha256": "9e9acbdc0dc204d03dd93bc2ff9f5a92857e02fc8e27db81430187842484b0b2",
+  "existing_sensitivity_max_bound_ratio": 0.002031582490331103,
+  "statistics": {
+    "parameter_mean_bias_T": [
+      1.0220630918211362e-06,
+      -1.1839445492878298e-05,
+      5.428526113742318e-07,
+      -8.050325722170742e-07,
+      -1.1569848242576342e-05,
+      -1.1133308183429394e-07
+    ],
+    "parameter_mean_bias_z": [
+      0.32630106743903786,
+      -0.6306326369710276,
+      0.5827876373283686,
+      -0.27193619094367066,
+      -0.6163556637196298,
+      -0.12610274890924358
+    ],
+    "parameter_mean_max_abs_z": 0.6297044976121079,
+    "parameter_covariance_max_abs_z": 1.9347977314444946,
+    "holdout_residual_covariance_max_abs_z": 3.5889979527321723,
+    "parameter_95pct_coverage": [
+      0.952880859375,
+      0.9541015625,
+      0.948486328125,
+      0.95166015625,
+      0.955322265625,
+      0.9501953125
+    ],
+    "parameter_coverage_max_abs_z": 1.5628946869932152,
+    "training_chi_square": {
+      "dof": 90,
+      "mean": 90.26790575191943,
+      "variance": 182.75336982792908,
+      "mean_z": 1.2779850087574134,
+      "variance_z": 0.670182295566487
+    },
+    "holdout_chi_square": {
+      "dof": 96,
+      "mean": 96.01754004524898,
+      "variance": 187.63782117320636,
+      "mean_z": 0.08101399876876639,
+      "variance_z": -0.9973620545479727
+    }
+  },
+  "cross_covariance_omission": {
+    "expected_chi_square_mean": 94.9200098411873,
+    "observed_chi_square_mean": 94.89702507268518,
+    "correct_degrees_of_freedom": 96,
+    "residual_covariance_relative_frobenius_change": 0.3289602675701241,
+    "interpretation": "descriptive negative control; marginal covariances fixed, true cross covariance incorrectly omitted"
+  },
+  "candidate": {
+    "sha256": "d45a529e981b5d62df83d0dae72e3e058c3cadc833798cbd5e61995b152f7483",
+    "complete_scans_compared": 4096,
+    "passed": true
+  },
+  "environment": {
+    "python": "3.12.15",
+    "numpy": "2.4.3",
+    "affinity": [
+      14
+    ],
+    "OPENBLAS_NUM_THREADS": "1",
+    "elapsed_s": 4.143416224047542
+  }
+}

@@ -54,13 +54,19 @@ monomial. Batch points and fields have `3*count` entries with component fastest.
 Batch queries are scalar at radius 1. All native calls use one process-global
 cache and require external serialization. Every load clears the active context
 before parsing; a failed load cannot leave a previously loaded cache active.
-Check status before consuming output.
+Check status before consuming output. Before allocating geometry, the Fortran
+loader checks nonnegative counts against a conservative text-file byte bound
+using int64 arithmetic and rejects counts that leave no room for one-past-end
+indices. Impossible counts and truncated records return status 3. Explicit
+Fortran loader allocations use `STAT=`; allocation failure returns status 2
+and cleans up any partly allocated cache. These checks do not authenticate the
+file or impose a fixed maximum memory size on plausible large geometry files.
 
 | Status | Meaning |
 |---|---|
 | 0 | Success |
 | 1 | No cache loaded |
-| 2 | Cache file I/O failure |
+| 2 | Cache file I/O or Fortran loader allocation failure |
 | 3 | Cache format failure |
 | 4 | Invalid mode or mode/order combination |
 | 5 | Invalid order |

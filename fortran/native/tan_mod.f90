@@ -4,7 +4,7 @@
 ! scalar queries to binary64 only in guarded regular cases, else real128.
 ! Ambiguous plane/edge/support decisions use fortran/triangle_exact_geometry.c.
 module tan_mod
-   use, intrinsic :: iso_fortran_env, only: wp => real128, dp => real64
+   use, intrinsic :: iso_fortran_env, only: wp => real128, dp => real64, int64
    use, intrinsic :: iso_c_binding
    use, intrinsic :: ieee_arithmetic
    use tan_jet_mod
@@ -169,6 +169,7 @@ contains
       character(len=*), intent(in) :: path
       integer, intent(out) :: status
       integer :: unit, ios, i, np_in, ne_in, ip, k
+      integer(int64) :: file_bytes, minimum_bytes
       character(len=:), allocatable :: line, cpath
       type(tan_plane), allocatable :: pl(:)
       type(tan_edge), allocatable :: ed(:), grouped(:)
@@ -184,7 +185,11 @@ contains
       status = TAN_OK
       np_in = 0
       ne_in = 0
-      allocate(character(len=LINE_LEN) :: line)
+      allocate(character(len=LINE_LEN) :: line, stat=ios)
+      if (ios /= 0) then
+         status = TAN_ERR_IO
+         return
+      end if
 
       open(newunit=unit, file=trim(path), status='old', action='read', &
            iostat=ios)
@@ -218,7 +223,29 @@ contains
          return
       end if
 
-      allocate(pl(max(np_in, 1)), ed(max(ne_in, 1)))
+      ! A plane/edge needs at least 11/15 text bytes (six/eight one-character
+      ! tokens plus separators). The entire file size is a conservative bound;
+      ! the C exact parser later checks the remaining bytes and full grammar.
+      ! Convert BEFORE arithmetic, and reserve room for one-past-end indices.
+      file_bytes = -1_int64
+      inquire(unit=unit, size=file_bytes, iostat=ios)
+      if (ios /= 0 .or. file_bytes < 0_int64) then
+         close(unit)
+         status = TAN_ERR_IO
+         return
+      end if
+      minimum_bytes = 11_int64 * int(np_in, int64) + 15_int64 * int(ne_in, int64)
+      if (minimum_bytes > file_bytes .or. np_in == huge(np_in) .or. ne_in == huge(ne_in)) then
+         close(unit)
+         status = TAN_ERR_FORMAT
+         return
+      end if
+      allocate(pl(max(np_in, 1)), ed(max(ne_in, 1)), stat=ios)
+      if (ios /= 0) then
+         close(unit)
+         status = TAN_ERR_IO
+         return
+      end if
       do i = 1, np_in
          call read_nonempty(unit, line, ios)
          if (ios /= 0) then
@@ -328,7 +355,11 @@ contains
       end do
       close(unit)
 
-      allocate(count(max(np_in, 1)), start(max(np_in, 1)), cursor(max(np_in, 1)))
+      allocate(count(max(np_in, 1)), start(max(np_in, 1)), cursor(max(np_in, 1)), stat=ios)
+      if (ios /= 0) then
+         status = TAN_ERR_IO
+         return
+      end if
       count = 0
       do i = 1, ne_in
          count(ed(i)%iplane) = count(ed(i)%iplane) + 1
@@ -338,7 +369,11 @@ contains
          start(i + 1) = start(i) + count(i)
       end do
       cursor = start
-      allocate(grouped(max(ne_in, 1)))
+      allocate(grouped(max(ne_in, 1)), stat=ios)
+      if (ios /= 0) then
+         status = TAN_ERR_IO
+         return
+      end if
       do i = 1, ne_in
          ip = ed(i)%iplane
          k = cursor(ip)
@@ -346,7 +381,12 @@ contains
          cursor(ip) = k + 1
       end do
 
-      allocate(e0(max(np_in, 1)), e1(max(np_in, 1)))
+      allocate(e0(max(np_in, 1)), e1(max(np_in, 1)), stat=ios)
+      if (ios /= 0) then
+         call tan_clear()
+         status = TAN_ERR_IO
+         return
+      end if
       do i = 1, np_in
          if (count(i) == 0) then
             e0(i) = 1
@@ -412,11 +452,16 @@ contains
 
       npl = np_in
       ned = ne_in
-      allocate(planes(max(npl, 1)), edges(max(ned, 1)))
-      if (npl > 0) planes(1:npl) = pl(1:npl)
-      if (ned > 0) edges(1:ned) = grouped(1:ned)
+      call move_alloc(pl, planes)
+      call move_alloc(grouped, edges)
 
-      cpath = trim(path) // c_null_char
+      allocate(character(len=len_trim(path)+1) :: cpath, stat=ios)
+      if (ios /= 0) then
+         call tan_clear()
+         status = TAN_ERR_IO
+         return
+      end if
+      cpath(:) = trim(path) // c_null_char
       cst = tan_exact_load_c_impl(cpath)
       if (cst /= 0_c_int) then
          call tan_clear()

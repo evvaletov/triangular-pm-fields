@@ -10,5 +10,13 @@ ctest --test-dir build --output-on-failure
 julia --startup-file=no --project=julia julia/test/runtests.jl
 python3 tools/conformance.py --build build --output local-results/conformance.json
 python3 examples/triangle.py --library build/libtan.so
+python3 examples/python_correlated_fit.py
+python3 validation/correlated/check_oracle.py \
+  --candidate python/triangular_pm_fields/correlated_fit.py \
+  --output local-results/correlated-oracle.json
+python3 validation/correlated/pm_gaussian_check.py \
+  --arrays validation/correlated/pm_fixture.npz \
+  --candidate python/triangular_pm_fields/correlated_fit.py \
+  --output local-results/correlated-gaussian.json
 ./build/example_fortran
 ./build/cpp/triangle_example

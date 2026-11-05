@@ -15,7 +15,6 @@
     "Julia standalone orders are checked before integer conversion; map dimensions and indexing are validated"
   ],
   "native_sources_unchanged": {
-    "fortran/native/tan_mod.f90": "561dd18b2b8f5c294a13de5443bb07f48ec38dd7007b766c4a40e055e2c9b655",
     "fortran/native/tan_jet.f90": "094a28c34eb46979462aac5271b7832cb9b55efd9c0171385def225dab45a0a3",
     "fortran/triangle_exact_geometry.c": "e25796126bc69576d57bde2aec23c1c40b2b6013fe0232dd4dcd15cbb32b9d8c",
     "cosy/triangle_assembly_proc.f": "9bed2054ad76fe1e51dec1d068680bf0eb0da9273fe1ddc6dea739cca7be41da"
@@ -31,5 +30,24 @@
     "jaxlib": "0.10.1"
   },
   "distribution": "Source, corpus and validation data only; external licensed COSY runtime/library and all dependency binaries excluded.",
-  "reference_source_commit": "8a06fa62af1cce2f3309052d14bb4b0cc3f8e269"
+  "statistical_extension": {
+    "scope": "Fixed linear model with known joint training/holdout covariance; synthetic verification only.",
+    "experimental_validation": false,
+    "date": "2026-11-05",
+    "initial_implementation_commit": "43e5322df738e61fa7151618a229478872820da0",
+    "independent_reference_freeze_commit": "cd162a194",
+    "independent_reference_handback_commit": "2533866a6",
+    "field_kernels_changed": false
+  },
+  "native_source_repairs": {
+    "fortran/native/tan_mod.f90": {
+      "prior_sha256": "561dd18b2b8f5c294a13de5443bb07f48ec38dd7007b766c4a40e055e2c9b655",
+      "sha256": "a91c2abf3633b5ec7b804be00ad44e27368f5d5bd5c7a1d4fd09145b33f5893d",
+      "scope": "Cache loader validates counts before allocation and returns status on allocation failure. Field evaluation arithmetic is unchanged.",
+      "authoritative_commit": "f45bd35bc0ece119d131b48bc694ca8e499f6feb"
+    }
+  },
+  "analytic_cosy_repair": "Documented restricted domain is checked before accumulation; unsupported inputs terminate explicitly; zero charge is a no-op.",
+  "reference_source_commit": "8a06fa62af1cce2f3309052d14bb4b0cc3f8e269",
+  "previous_release_commit": "b2aba723c54edcf90cab0d3d4f9fc392356b274b"
 }

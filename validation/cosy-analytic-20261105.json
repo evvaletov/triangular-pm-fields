@@ -1,0 +1,220 @@
+{
+  "actually_executed": true,
+  "runtime": "/tmp/triangle_release_cosy_runtime_20261105_v2",
+  "library": "/tmp/cosy_triangle_completed_build_storage_20261104/COSY.bin",
+  "runtime_sha256": "a58e3cb137decd41548dcb56e26e14afc09eb8d2d0eabd7d08e69949211a28a3",
+  "library_sha256": "a7427f981d372921607f9ce4627850f11c6bf962d26e1627838973af02f2746e",
+  "source_sha256": "3ea1f115a8bd0bc6556aa6d679bace91c08fefa13855ffbaaf60207adb57e654",
+  "quadrature_refinement_max_absolute_change": 8.326672684688674e-16,
+  "all_passed": true,
+  "results": [
+    {
+      "name": "regular",
+      "vertices": "0 0 0 1 0 0 0 1 0",
+      "sigma": "1",
+      "observer": [
+        ".2+DA(1)",
+        ".3+DA(2)",
+        ".4+DA(3)"
+      ],
+      "expected_failure": null,
+      "returncode": 0,
+      "deck_sha256": "3edc06dab972a225cffc75856c8d07673e8f310b2d070e9bed73ab83cea04e92",
+      "values": [
+        [
+          9.974819759438706,
+          0.19562745583266383,
+          0.020816243008369616,
+          0.09716395676087414
+        ],
+        [
+          19.992326707349612,
+          0.02081624300836965,
+          0.18923095018926078,
+          0.029638365663094357
+        ],
+        [
+          30.13029268807921,
+          0.09716395676087428,
+          0.02963836566309447,
+          -0.3848584060219246
+        ]
+      ],
+      "expected": [
+        [
+          9.974819759438706,
+          0.19562745583266397,
+          0.020816243008369626,
+          0.09716395676087441
+        ],
+        [
+          19.992326707349612,
+          0.020816243008369626,
+          0.18923095018926117,
+          0.02963836566309466
+        ],
+        [
+          30.13029268807921,
+          0.09716395676087441,
+          0.02963836566309468,
+          -0.38485840602192417
+        ]
+      ],
+      "max_absolute_error": 4.440892098500626e-16,
+      "passed": true
+    },
+    {
+      "name": "near_vertex",
+      "vertices": "0 0 0 1 0 0 0 1 0",
+      "sigma": "1",
+      "observer": [
+        "0",
+        "0",
+        "1E-16"
+      ],
+      "expected_failure": "vertex distance",
+      "returncode": 0,
+      "deck_sha256": "91670318b04861042e0f9f2a8d85689ed3eee9ad8a161bf047ddbebcb181c5af",
+      "passed": true
+    },
+    {
+      "name": "small_charge",
+      "vertices": "0 0 0 1 0 0 0 1 0",
+      "sigma": "1E-31",
+      "observer": [
+        ".2",
+        ".3",
+        ".4"
+      ],
+      "expected_failure": "nonzero charge scale",
+      "returncode": 0,
+      "deck_sha256": "9f3d2d4a9a3ad3cf9a25b6f511baea1fb1e14396d9cc19383bca5582df7ee153",
+      "passed": true
+    },
+    {
+      "name": "small_normal",
+      "vertices": "0 0 0 1E-16 0 0 0 1E-16 0",
+      "sigma": "1",
+      "observer": [
+        ".2",
+        ".3",
+        ".4"
+      ],
+      "expected_failure": "face normal scale",
+      "returncode": 0,
+      "deck_sha256": "ceb24e8cc2417872e46b268a695e0c3e7c00796533bd66f1d7d4829f1b46c230",
+      "passed": true
+    },
+    {
+      "name": "short_edge0",
+      "vertices": "0 0 0 1E-16 0 0 0 1 0",
+      "sigma": "1",
+      "observer": [
+        ".2",
+        ".3",
+        ".4"
+      ],
+      "expected_failure": "edge length",
+      "returncode": 0,
+      "deck_sha256": "19317c47ee90186a071dbc81bc35d863b766a09d793d6c090c55d333e4e5e5b5",
+      "passed": true
+    },
+    {
+      "name": "short_edge1",
+      "vertices": "0 1 0 0 0 0 1E-16 0 0",
+      "sigma": "1",
+      "observer": [
+        ".2",
+        ".3",
+        ".4"
+      ],
+      "expected_failure": "edge length",
+      "returncode": 0,
+      "deck_sha256": "c996b3de8ce5d249938dcb5db8c74fee4615d08c9b6be97f3307508885b76d98",
+      "passed": true
+    },
+    {
+      "name": "short_edge2",
+      "vertices": "0 0 0 0 1 0 1E-16 0 0",
+      "sigma": "1",
+      "observer": [
+        ".2",
+        ".3",
+        ".4"
+      ],
+      "expected_failure": "edge length",
+      "returncode": 0,
+      "deck_sha256": "a8a5ccd535375a2a732eef2db61d95b2112754c0b8bfe7e7da95fe53e77baa7b",
+      "passed": true
+    },
+    {
+      "name": "coplanar",
+      "vertices": "0 0 0 1 0 0 0 1 0",
+      "sigma": "1",
+      "observer": [
+        ".2",
+        ".3",
+        "0"
+      ],
+      "expected_failure": "coplanar observer",
+      "returncode": 0,
+      "deck_sha256": "da3571699927a39f8c625f4318b07020a9fd6a5ec4006001b3f40d161a1da039",
+      "passed": true
+    },
+    {
+      "name": "zero_charge_degenerate",
+      "vertices": "0 0 0 0 0 0 0 0 0",
+      "sigma": "0",
+      "observer": [
+        "0",
+        "0",
+        "0"
+      ],
+      "expected_failure": null,
+      "returncode": 0,
+      "deck_sha256": "b6eb2478e5c8120bc09f135d87ebf81454743a5263bf4ac574f0b429f229cd59",
+      "values": [
+        [
+          10.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          20.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          30.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "expected": [
+        [
+          10.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          20.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          30.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "max_absolute_error": 0.0,
+      "passed": true
+    }
+  ]
+}

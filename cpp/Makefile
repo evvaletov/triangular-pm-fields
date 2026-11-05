@@ -45,7 +45,7 @@ test: $(BUILD)/test_triangle $(BUILD)/triangle_cli $(BUILD)/example
 	OMP_NUM_THREADS=1 $(RUN) $(BUILD)/example >/dev/null
 	$(RUN) $(BUILD)/triangle_cli 0 1 0.8 0 0 0 1.2 0 0 0.2 0.9 0 0.4 0.3 0.5 >/dev/null
 
-$(BUILD)/libtan.so: | $(BUILD)
+$(BUILD)/libtan.so: $(NATIVE_SRC)/tan_jet.f90 $(NATIVE_SRC)/tan_mod.f90 $(EXACT_SRC) | $(BUILD)
 	$(RUN) gcc -O3 -fno-fast-math -std=c11 -fPIC -c $(EXACT_SRC) -o $(BUILD)/triangle_exact_geometry.o
 	$(RUN) gfortran -O3 -fno-fast-math -std=f2018 -fPIC -ffree-line-length-none -J$(BUILD) -c $(NATIVE_SRC)/tan_jet.f90 -o $(BUILD)/tan_jet.o
 	$(RUN) gfortran -O3 -fno-fast-math -std=f2018 -fPIC -ffree-line-length-none -J$(BUILD) -I$(BUILD) -c $(NATIVE_SRC)/tan_mod.f90 -o $(BUILD)/tan_mod.o

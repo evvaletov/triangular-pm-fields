@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
-project(triangular_pm_fields VERSION 0.1.0 LANGUAGES C Fortran CXX)
+project(triangular_pm_fields VERSION 0.2.0 LANGUAGES C Fortran CXX)
 include(CTest)
 find_library(GMP_LIBRARY NAMES gmp REQUIRED)
 find_path(GMP_INCLUDE_DIR NAMES gmp.h REQUIRED)
