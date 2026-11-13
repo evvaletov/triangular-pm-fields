@@ -22,16 +22,21 @@ coordinate transforms, units, or calibration from the arrays.
 
 `C_joint` has shape `(n_train+n_holdout, n_train+n_holdout)` with all training
 rows first. Its diagonal contains variances, not standard deviations. It must
-be finite, real, symmetric to roundoff, and positive definite. The class rejects
-singular covariance matrices and adds no diagonal jitter. Parameter scales are
+be finite, real, symmetric to roundoff, and positive definite. Symmetry is
+checked entrywise against `n*eps*sqrt(C_ii*C_jj)`, where `n` is the total
+observation count. Cholesky factorization must succeed; no diagonal jitter is
+added. Parameter scales are
 positive reference sizes used to scale columns for rank assessment; they impose
 no prior or regularization. An omitted scale defaults to one for each parameter.
-The class also rejects nonfinite arithmetic and a parameter or residual variance
-that underflows to zero. Rescale the physical units if the problem exceeds the
-supported float64 range.
-Parameter scales, nonzero column-scaled design entries and nonzero singular
-values must stay in the normal float64 range. Destructive subnormal rounding
-or a nonzero design entry that underflows during scaling causes a range error.
+The class rejects nonfinite arithmetic and parameter or residual variances
+below the normal float64 range, including positive subnormal values. Prediction
+variance for a nonzero holdout row must also remain in that range; a zero row
+has exactly zero prediction variance. Rescale physical units if necessary.
+
+Parameter scales, every nonzero column-scaled design entry and every nonzero
+singular value must stay in the normal float64 range. These are conservative
+domain restrictions: any subnormal entry or a nonzero design entry that
+underflows during scaling causes a range error before rank classification.
 
 The fixed model is
 
@@ -46,8 +51,14 @@ Cholesky whitening followed by an SVD gives the estimator
 with deficient numerical rank, are rejected. The rank cutoff is
 `max(n_train,n_parameters)*eps*largest_singular_value` after whitening and
 column scaling. The normal matrix is not inverted.
+`condition_number` is the ratio of the largest and smallest singular values
+of the whitened, column-scaled training design. Rank acceptance does not
+guarantee accurate weak parameter directions: ill-conditioning in that design
+or the training covariance can magnify roundoff.
 
-Prepared arrays and fit results are immutable copies. The prepared object
+Prepared arrays and fit results retain immutable copies of their values and
+shapes. Array access returns a fresh read-only NumPy view; changing that view's
+dtype or shape does not change later fits or the saved result. The prepared object
 exposes `estimator`, `parameter_covariance`, `singular_values`, `rank`,
 `condition_number`, and `training_dof`. `fit()` returns parameter estimates,
 training predictions and residuals, held-out predictions, training chi-square,
@@ -61,11 +72,13 @@ Cov(r) = C_hh + K C_tt K.T - C_ht K.T - K C_th.
 ```
 
 The implementation computes this covariance from the joint Cholesky factor:
-`F = [-K, I] L`, `C_joint = L L.T`, `Cov(r) = F F.T`. This avoids subtracting
-large covariance terms. `holdout_residual_covariance` includes error in both
+`F = [-K, I] L`, `C_joint = L L.T`, `Cov(r) = F F.T`. This subtracts factor
+rows instead of covariance blocks; cancellation can still occur when shared
+errors dominate. `holdout_residual_covariance` includes error in both
 scans. `prediction_covariance = A_holdout Cov(theta_hat) A_holdout.T` describes
 uncertainty in the fitted mean prediction and excludes held-out measurement
-noise. These two quantities answer different questions.
+noise. Use the residual covariance to score held-out observations and the
+prediction covariance to describe uncertainty in the fitted mean.
 
 `evaluate_holdout()` returns the fit and the held-out residual and chi-square.
 For zero-mean Gaussian errors with the specified fixed covariance and a correct

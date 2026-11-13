@@ -1,5 +1,20 @@
 # Validation record
 
+## Release check, 13 November 2026
+
+The [v0.2.0 release check](recheck-20261113.json) passed 74 Python tests,
+all four CTest targets, 218 Julia assertions, and all 639 provider/case
+comparisons. The correlated fitter passed its six high-precision positive
+fixtures, five rejection cases, and 4,096 synthetic scan pairs. The seven
+new regression tests cover array metadata mutation, result serialization
+and equality, mixed-unit covariance symmetry, variance underflow, and an
+ill-conditioned design checked against 80-digit QR.
+
+The release uses the MIT license. Native field arithmetic and COSYScript
+sources are unchanged from the November 5 checks below; licensed COSY
+execution was not repeated in this release check. The earlier dated records
+remain historical snapshots with their original source hashes.
+
 ## Correlated-fit extension, 5 November 2026
 
 The [0.2.0 check](recheck-20261105.json) passed 67 Python tests, 119 Fortran

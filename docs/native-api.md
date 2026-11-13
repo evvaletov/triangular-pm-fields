@@ -32,7 +32,7 @@ used_mode = tan_last_mode()
 ```
 
 `point(3)`, `radius`, and `coefficients(3,84)` are binary64. Mode 0 is a
-binary64 scalar calculation; mode 1 uses real128 and accepts orders 0–6;
+binary64 scalar calculation; mode 1 uses real128 and accepts orders 0-6;
 mode 2 selects a scalar precision path using geometry and conditioning guards.
 Modes 0 and 2 require order 0. `tan_last_mode()` reports the path actually used:
 0, 1, or -1 when no kernel ran. Mode 2's guards have finite-corpus validation;

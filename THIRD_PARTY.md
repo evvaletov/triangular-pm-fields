@@ -15,7 +15,7 @@ COSY.bin macro library, compiler runtimes, or dependency source trees.
 | COSY INFINITY | Optional native bridge execution and DA composition | Obtain a suitable licensed runtime/source distribution separately |
 
 Dependencies are installed separately and retain their own terms.
-This repository grants no public redistribution license; see LICENSE.
+Project source is covered by the MIT license in LICENSE.
 
 `adapters/jax_repair_20261103` is a project-specific implementation. It is not
 an upstream magpylib_jax export. Its documented comparison baseline is commit

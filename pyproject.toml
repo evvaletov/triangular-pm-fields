@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.26", "mpmath>=1.3"]
 authors = [{name = "Eremey Valetov"}]
-license = {text = "No public license grant. See LICENSE."}
+license = {text = "MIT"}
 
 [tool.setuptools.packages.find]
 where = ["python"]

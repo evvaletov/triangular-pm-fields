@@ -5,12 +5,11 @@ named native client that shares the Fortran `tan_mod` physical kernel.
 
 ## Layout
 
-- `src/TriangularPMFields.jl` — library
-- `cli.jl` — standalone CLI
-- `native_cli.jl` — Fortran C ABI client
-- `examples/example.jl` — regular-point example
-- `test/runtests.jl` — independent tests
-- `JULIA_HANDOFF.txt` — lane commands, counts, and limits
+- `src/TriangularPMFields.jl`: library
+- `cli.jl`: standalone CLI
+- `native_cli.jl`: Fortran C ABI client
+- `examples/example.jl`: regular-point example
+- `test/runtests.jl`: independent tests
 
 Dependencies: Julia 1.10+ stdlib (`BigFloat`, `Rational`, `Libdl`, `Test`).
 No package download. Native queries need a built `libtan.so` and GMP.

@@ -16,9 +16,10 @@ joint factor C = L L^T as C_r = F F^T with F = [-K, I] L and K = A_h H.
 
 Dense-memory limitation
 -----------------------
-C, its Cholesky factor, and the holdout factor F are dense. For n = n_t + n_h
-the covariance storage is 8 n^2 bytes plus a similar Cholesky workspace and
-an n_h by n factor. There is no sparse or out-of-core path. The intended use
+C, its Cholesky factor, and the holdout factor F are dense. For n = n_t + n_h,
+one covariance array occupies 8 n^2 bytes. Construction keeps several arrays
+of this size and temporary copies, as well as an n_h by n factor. There is no
+sparse or out-of-core path. The intended use
 is small synthetic designs and modest assembled observation lists, not a
 full-field scan map.
 
@@ -73,11 +74,31 @@ def _as_real_float64(value, name, *, ndim, shape=None):
     return out
 
 
+@dataclass(frozen=True, slots=True)
+class _ArraySnapshot:
+    data: bytes
+    shape: tuple[int, ...]
+
+    def view(self):
+        return np.frombuffer(self.data, dtype=np.float64).reshape(self.shape)
+
+
 def _frozen_array(value):
-    """Owned float64 copy whose backing bytes cannot be made writeable."""
+    """Keep both the values and their interpretation outside mutable ndarray headers."""
+    if isinstance(value, _ArraySnapshot):
+        return value
     array = np.array(value, dtype=np.float64, copy=True, order='C')
-    frozen = np.frombuffer(array.tobytes(), dtype=np.float64).reshape(array.shape)
-    return frozen
+    return _ArraySnapshot(array.tobytes(), array.shape)
+
+
+class _ArrayAccess:
+    __slots__ = ()
+
+    def __getattribute__(self, name):
+        value = object.__getattribute__(self, name)
+        # A read-only ndarray still permits dtype/shape changes. Each access
+        # receives its own header; its bytes and the stored shape are immutable.
+        return value.view() if isinstance(value, _ArraySnapshot) else value
 
 
 def _require_finite(array, name):
@@ -91,20 +112,22 @@ def _require_normal_or_zero(array, name):
 
 
 def _symmetrize_joint_covariance(covariance):
-    """Accept only roundoff asymmetry relative to max |C|, then symmetrize."""
-    max_abs = float(np.max(np.abs(covariance)))
-    asymmetry = float(np.max(np.abs(covariance - covariance.T)))
-    limit = covariance.shape[0] * _EPS * max_abs
-    if asymmetry > limit:
-        raise ValueError(
-            'joint_covariance asymmetry '
-            f'{asymmetry} exceeds roundoff limit {limit} relative to max |C|={max_abs}'
-        )
+    """Check symmetry in correlation units, so observation units do not hide errors."""
+    diagonal = np.diag(covariance)
+    if np.any(diagonal <= 0.0):
+        raise ValueError('joint_covariance must have positive diagonal variances')
+    standard_deviations = np.sqrt(diagonal)
+    scales = standard_deviations[:, None] * standard_deviations[None, :]
+    limit = (covariance.shape[0] * _EPS) * scales
+    with np.errstate(over='ignore'):
+        asymmetry = np.abs(covariance - covariance.T)
+    if np.any(asymmetry > limit):
+        raise ValueError('joint_covariance asymmetry exceeds roundoff in correlation units')
     return 0.5 * (covariance + covariance.T)
 
 
 @dataclass(frozen=True, eq=False, slots=True)
-class CorrelatedLinearFitResult(Mapping):
+class CorrelatedLinearFitResult(_ArrayAccess, Mapping):
     """Immutable GLS result. Holdout residual fields are filled by evaluate_holdout."""
 
     parameters: np.ndarray
@@ -116,6 +139,22 @@ class CorrelatedLinearFitResult(Mapping):
     holdout_residual: np.ndarray | None = None
     holdout_chi_square: float | None = None
     holdout_dof: int | None = None
+
+    def __post_init__(self):
+        for name in ('parameters', 'fitted_training', 'predicted_holdout',
+                     'training_residual', 'holdout_residual'):
+            value = object.__getattribute__(self, name)
+            if value is not None:
+                object.__setattr__(self, name, _frozen_array(value))
+
+    def __getstate__(self):
+        return tuple(object.__getattribute__(self, field.name) for field in fields(self))
+
+    def __setstate__(self, state):
+        # Frozen-slot dataclasses otherwise restore the exposed ndarray views.
+        for field, value in zip(fields(self), state, strict=True):
+            object.__setattr__(self, field.name, value)
+        self.__post_init__()
 
     def __getitem__(self, key):
         if not isinstance(key, str) or key not in self.__dataclass_fields__:
@@ -140,8 +179,16 @@ class CorrelatedLinearFitResult(Mapping):
         names = ', '.join(self)
         return f'{self.__class__.__name__}({names})'
 
+    def __eq__(self, other):
+        if not isinstance(other, Mapping):
+            return NotImplemented
+        return (set(self) == set(other) and
+                all(np.array_equal(self[key], other[key]) for key in self))
 
-class CorrelatedLinearFit:
+    __hash__ = None
+
+
+class CorrelatedLinearFit(_ArrayAccess):
     """GLS estimator H y_t with known joint covariance of training and holdout.
 
     Parameters
@@ -272,13 +319,16 @@ class CorrelatedLinearFit:
         parameter_covariance = G @ G.T
         parameter_covariance = 0.5 * (parameter_covariance + parameter_covariance.T)
         _require_finite(parameter_covariance, 'parameter_covariance')
-        if np.any(np.diag(parameter_covariance) <= 0.0):
+        if np.any(np.diag(parameter_covariance) < _TINY):
             raise ValueError('parameter covariance underflows the supported float64 range')
         prediction_factor = A_h @ G
         _require_finite(prediction_factor, 'prediction factor')
         prediction = prediction_factor @ prediction_factor.T
         prediction = 0.5 * (prediction + prediction.T)
         _require_finite(prediction, 'prediction_covariance')
+        active_prediction = np.any(A_h != 0.0, axis=1)
+        if np.any(active_prediction & (np.diag(prediction) < _TINY)):
+            raise ValueError('prediction_covariance underflows the supported float64 range')
         K = A_h @ estimator
         _require_finite(K, 'K = A_h H')
         F = L[n_t:, :] - K @ L[:n_t, :]
@@ -286,7 +336,7 @@ class CorrelatedLinearFit:
         residual_covariance = F @ F.T
         residual_covariance = 0.5 * (residual_covariance + residual_covariance.T)
         _require_finite(residual_covariance, 'holdout_residual_covariance')
-        if np.any(np.diag(residual_covariance) <= 0.0):
+        if np.any(np.diag(residual_covariance) < _TINY):
             raise ValueError('holdout residual covariance underflows the supported float64 range')
         try:
             _q, residual_factor = np.linalg.qr(F.T, mode='reduced')

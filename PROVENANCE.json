@@ -49,5 +49,13 @@
   },
   "analytic_cosy_repair": "Documented restricted domain is checked before accumulation; unsupported inputs terminate explicitly; zero charge is a no-op.",
   "reference_source_commit": "8a06fa62af1cce2f3309052d14bb4b0cc3f8e269",
-  "previous_release_commit": "b2aba723c54edcf90cab0d3d4f9fc392356b274b"
+  "previous_release_commit": "b2aba723c54edcf90cab0d3d4f9fc392356b274b",
+  "statistical_api_repair": {
+    "date": "2026-11-13",
+    "scope": "Immutable bytes/shape snapshots and result serialization prevent array metadata corruption; correlation-scaled symmetry checks and normal-range variance guards reject unsupported inputs. GLS formulas and field kernels are unchanged.",
+    "sha256": {
+      "python/triangular_pm_fields/correlated_fit.py": "09e33e8d9801c473a51fdbd456b2eaa6431b708d95232d629e9a9a917be5a41e",
+      "tests/test_correlated_fit_regressions.py": "77cba38797dc0469069e32c97d694851a2b31305c0ea397e49e02466bce2bacf"
+    }
+  }
 }

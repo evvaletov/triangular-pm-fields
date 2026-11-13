@@ -3,8 +3,10 @@ message: "Please cite this software using the metadata in this file."
 title: "Triangular permanent-magnet fields"
 type: software
 version: 0.2.0
-date-released: 2026-11-05
+date-released: 2026-11-13
 authors:
   - family-names: Valetov
     given-names: Eremey
 repository-code: "https://github.com/evvaletov/triangular-pm-fields"
+license: MIT
+url: "https://github.com/evvaletov/triangular-pm-fields/releases/tag/v0.2.0"

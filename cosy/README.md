@@ -53,7 +53,7 @@ The open-tool CI does not execute licensed COSY. The initial qualification
 includes a local runtime build and actual interpreter runs; see the saved
 validation summary. No runtime or macro-library binary is included with it.
 
-## Analytic FOX routine domain
+## Analytic COSYScript routine domain
 
 `SI_VFIELD_TRI_CHARGE` is a separate analytic entry point from `TRLOAD`/`TRFLD`.
 It adds its complete triangle contribution to `SI_VFR_BX/BY/BZ` only after the

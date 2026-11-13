@@ -1,0 +1,21 @@
+{
+  "title": "Triangular permanent-magnet fields",
+  "upload_type": "software",
+  "description": "Permanent-magnet fields and Taylor maps from triangular surface elements in Fortran, COSY INFINITY, C++, Python, and Julia. Includes cached boundary evaluation and linear fitting with a known joint covariance.",
+  "creators": [
+    {
+      "name": "Valetov, Eremey"
+    }
+  ],
+  "version": "0.2.0",
+  "publication_date": "2026-11-13",
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "permanent magnets",
+    "magnetic fields",
+    "triangular elements",
+    "differential algebra",
+    "Taylor maps"
+  ]
+}
